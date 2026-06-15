@@ -1,486 +1,843 @@
+```html
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CyberStation</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thử thách kĩ sư EcoWrap</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
 
-    <style>
-      :root {
-        --bg: #05060a;
-        --neon: #00ffc8;
-        --neon2: #7c4dff;
-        --text: #cffff6;
-        --muted: rgba(207, 255, 246, 0.75);
-        --glass: rgba(6, 14, 16, 0.55);
-        --stroke: rgba(0, 255, 200, 0.22);
-        --shadow: 0 0 24px rgba(0, 255, 200, 0.35);
+  <style>
+    :root {
+      --bg1: #f0fff6;
+      --bg2: #e8f6ff;
+      --green: #1f9d55;
+      --green2: #0f766e;
+      --blue: #2563eb;
+      --orange: #f97316;
+      --text: #12302b;
+      --muted: #5b6f6a;
+      --card: rgba(255, 255, 255, 0.82);
+      --stroke: rgba(31, 157, 85, 0.22);
+      --shadow: 0 18px 50px rgba(15, 118, 110, 0.16);
+      --danger: #dc2626;
+      --good: #16a34a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Be Vietnam Pro", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(34, 197, 94, 0.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x: hidden;
+    }
+
+    .leaf {
+      position: fixed;
+      width: 180px;
+      height: 180px;
+      border-radius: 50% 0 50% 50%;
+      background: rgba(34, 197, 94, 0.12);
+      transform: rotate(-35deg);
+      z-index: -2;
+      filter: blur(0.2px);
+    }
+
+    .leaf.one {
+      top: 8%;
+      left: -70px;
+    }
+
+    .leaf.two {
+      bottom: 5%;
+      right: -60px;
+      background: rgba(37, 99, 235, 0.10);
+      transform: rotate(145deg);
+    }
+
+    .grid {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background-image:
+        linear-gradient(to right, rgba(15, 118, 110, 0.055) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 118, 110, 0.055) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(circle at 50% 40%, #000 45%, transparent 82%);
+    }
+
+    .wrap {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(920px, 95vw);
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: clamp(22px, 4vw, 42px);
+      position: relative;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: var(--green2);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12);
+    }
+
+    .score-pill {
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--blue);
+      border: 1px solid rgba(37, 99, 235, 0.18);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 66px);
+      line-height: 1.03;
+      color: var(--green2);
+      letter-spacing: -1.5px;
+    }
+
+    h1 span {
+      color: var(--orange);
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: clamp(15px, 2.4vw, 20px);
+      line-height: 1.7;
+      max-width: 780px;
+    }
+
+    .eco-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 24px 0;
+    }
+
+    .mini {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(15, 118, 110, 0.12);
+      text-align: center;
+      font-weight: 800;
+      color: var(--green2);
+      min-height: 72px;
+      display: grid;
+      place-items: center;
+    }
+
+    .mini small {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 16px;
+      padding: 14px 22px;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      box-shadow: 0 14px 30px rgba(15, 118, 110, 0.22);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px rgba(15, 118, 110, 0.28);
+    }
+
+    .btn.secondary {
+      color: var(--green2);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(15, 118, 110, 0.18);
+      box-shadow: none;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .panel {
+      padding: clamp(18px, 3.6vw, 34px);
+      border-top: 1px solid rgba(15, 118, 110, 0.12);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 38px);
+      color: var(--green2);
+    }
+
+    .round {
+      color: var(--orange);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .question {
+      margin: 10px 0 18px;
+      font-size: clamp(18px, 2.8vw, 24px);
+      line-height: 1.55;
+      font-weight: 800;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      width: 100%;
+      text-align: left;
+      border: 1px solid rgba(15, 118, 110, 0.15);
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--text);
+      padding: 15px 16px;
+      border-radius: 16px;
+      font-size: 16px;
+      line-height: 1.45;
+      cursor: pointer;
+      transition: 0.16s ease;
+    }
+
+    .option:hover {
+      transform: translateY(-1px);
+      border-color: rgba(31, 157, 85, 0.38);
+      background: white;
+    }
+
+    .option.correct {
+      border-color: rgba(22, 163, 74, 0.55);
+      background: rgba(22, 163, 74, 0.12);
+    }
+
+    .option.wrong {
+      border-color: rgba(220, 38, 38, 0.5);
+      background: rgba(220, 38, 38, 0.09);
+    }
+
+    .feedback {
+      margin-top: 16px;
+      border-radius: 16px;
+      padding: 14px 16px;
+      background: rgba(15, 118, 110, 0.08);
+      color: var(--text);
+      border: 1px solid rgba(15, 118, 110, 0.12);
+      line-height: 1.6;
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .match-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .match-item {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(15, 118, 110, 0.13);
+    }
+
+    .material {
+      font-weight: 900;
+      color: var(--green2);
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(15, 118, 110, 0.2);
+      background: white;
+      font-family: inherit;
+      color: var(--text);
+      font-weight: 700;
+      outline: none;
+    }
+
+    .progress {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.11);
+      overflow: hidden;
+      margin: 18px 0 0;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--orange));
+      transition: width 0.25s ease;
+    }
+
+    .result-box {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .big-score {
+      font-size: clamp(48px, 10vw, 96px);
+      font-weight: 900;
+      color: var(--green2);
+      margin: 8px 0;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .principle {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(34, 197, 94, 0.11);
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      font-weight: 800;
+      color: var(--green2);
+      text-align: center;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 700px) {
+      .eco-strip,
+      .principles {
+        grid-template-columns: 1fr 1fr;
       }
 
-      * {
-        box-sizing: border-box;
+      .match-item {
+        grid-template-columns: 1fr;
       }
+    }
 
-      body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: "Share Tech Mono", monospace;
-        background: radial-gradient(
-          1200px 800px at 50% 40%,
-          #081018,
-          var(--bg)
-        );
-        color: var(--text);
-        overflow: hidden;
-      }
-
-      canvas {
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -3;
-      }
-
-      .grid {
-        position: fixed;
-        inset: 0;
-        z-index: -2;
-        background-image:
-          linear-gradient(
-            to right,
-            rgba(0, 255, 200, 0.06) 1px,
-            transparent 1px
-          ),
-          linear-gradient(
-            to bottom,
-            rgba(0, 255, 200, 0.06) 1px,
-            transparent 1px
-          );
-        background-size: 48px 48px;
-        mask-image: radial-gradient(
-          circle at 50% 40%,
-          #000 45%,
-          transparent 75%
-        );
-        pointer-events: none;
-      }
-
-      .vignette {
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background: radial-gradient(
-          circle at 50% 40%,
-          transparent 35%,
-          rgba(0, 0, 0, 0.6) 80%
-        );
-        pointer-events: none;
-      }
-
-      .scan-line {
-        position: fixed;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(0, 255, 200, 0.35),
-          transparent
-        );
-        filter: blur(0.3px);
-        animation: scan 5s linear infinite;
-        z-index: 2;
-        pointer-events: none;
-      }
-
-      @keyframes scan {
-        0% {
-          top: -5%;
-          opacity: 0.3;
-        }
-        20% {
-          opacity: 0.65;
-        }
-        100% {
-          top: 105%;
-          opacity: 0.25;
-        }
-      }
-
-      .wrap {
-        position: absolute;
-        inset: 0;
-        display: grid;
-        place-items: center;
-        padding: 22px;
-      }
-
-      .card {
-        width: min(720px, 92vw);
-        padding: clamp(18px, 4.2vw, 34px);
-        border-radius: 18px;
-        background: var(--glass);
-        border: 1px solid var(--stroke);
-        box-shadow:
-          0 0 0 1px rgba(0, 255, 200, 0.06),
-          0 18px 60px rgba(0, 0, 0, 0.6),
-          var(--shadow);
-        backdrop-filter: blur(10px);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .card::before,
-      .card::after {
-        content: "";
-        position: absolute;
-        inset: -2px;
-        border-radius: 18px;
-        pointer-events: none;
-      }
-
-      .card::before {
-        background: conic-gradient(
-          from 210deg at 50% 50%,
-          rgba(0, 255, 200, 0),
-          rgba(0, 255, 200, 0.18),
-          rgba(124, 77, 255, 0.18),
-          rgba(0, 255, 200, 0)
-        );
-        filter: blur(18px);
-        opacity: 0.55;
-      }
-
-      .card::after {
-        background:
-          radial-gradient(
-            600px 240px at 20% 0%,
-            rgba(0, 255, 200, 0.18),
-            transparent 55%
-          ),
-          radial-gradient(
-            600px 240px at 90% 120%,
-            rgba(124, 77, 255, 0.18),
-            transparent 55%
-          );
-        opacity: 0.9;
-      }
-
-      .topline {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        margin-bottom: 18px;
-        position: relative;
-        z-index: 1;
-      }
-
-      .tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(0, 255, 200, 0.25);
-        color: rgba(0, 255, 200, 0.95);
-        background: rgba(0, 255, 200, 0.06);
-        letter-spacing: 1px;
-        font-size: 13px;
-      }
-
-      .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--neon);
-        box-shadow: 0 0 12px rgba(0, 255, 200, 0.9);
-        animation: pulse 1.6s ease-in-out infinite;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-          opacity: 0.9;
-        }
-        50% {
-          transform: scale(1.35);
-          opacity: 1;
-        }
-      }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(34px, 7.5vw, 70px);
-        letter-spacing: 5px;
-        color: var(--neon);
-        text-shadow:
-          0 0 18px rgba(0, 255, 200, 0.65),
-          0 0 44px rgba(0, 255, 200, 0.25);
-        position: relative;
-        z-index: 1;
-        user-select: none;
-        cursor: pointer;
-      }
-
-      h1::before,
-      h1::after {
-        content: attr(data-text);
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        overflow: hidden;
-        opacity: 0.55;
-        pointer-events: none;
-      }
-
-      h1::before {
-        transform: translate(2px, 0);
-        color: rgba(124, 77, 255, 0.75);
-        clip-path: inset(0 0 55% 0);
-        animation: glitch 1.8s infinite linear alternate-reverse;
-      }
-
-      h1::after {
-        transform: translate(-2px, 0);
-        color: rgba(0, 255, 200, 0.65);
-        clip-path: inset(55% 0 0 0);
-        animation: glitch 1.35s infinite linear alternate;
-      }
-
-      @keyframes glitch {
-        0% {
-          filter: blur(0px);
-          opacity: 0.5;
-        }
-        20% {
-          transform: translate(3px, -1px);
-          opacity: 0.65;
-        }
-        40% {
-          transform: translate(-3px, 1px);
-          opacity: 0.55;
-        }
-        60% {
-          transform: translate(2px, 0px);
-          opacity: 0.7;
-        }
-        80% {
-          transform: translate(-2px, 0px);
-          opacity: 0.55;
-        }
-        100% {
-          transform: translate(1px, -1px);
-          opacity: 0.6;
-        }
-      }
-
-      .subtitle {
-        margin: 8px 0 0;
-        color: var(--muted);
-        letter-spacing: 2px;
-        font-size: clamp(12px, 2.7vw, 16px);
-        position: relative;
-        z-index: 1;
-      }
-
-      .desc {
-        margin: 18px 0 24px;
-        font-size: clamp(14px, 3.4vw, 20px);
-        color: rgba(207, 255, 246, 0.86);
-        line-height: 1.55;
-        text-shadow: 0 0 12px rgba(0, 255, 200, 0.18);
-        position: relative;
-        z-index: 1;
-      }
-
-      .actions {
-        display: flex;
-        gap: 12px;
-        justify-content: center;
-        flex-wrap: wrap;
-        position: relative;
-        z-index: 1;
+    @media (max-width: 420px) {
+      .eco-strip,
+      .principles {
+        grid-template-columns: 1fr;
       }
 
       .btn {
-        padding: 14px 34px;
-        border-radius: 12px;
-        border: 1px solid rgba(0, 255, 200, 0.5);
-        background: rgba(0, 255, 200, 0.06);
-        color: var(--neon);
-        font-size: clamp(15px, 3.6vw, 20px);
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        cursor: pointer;
-        box-shadow:
-          0 0 0 1px rgba(0, 255, 200, 0.12) inset,
-          0 10px 30px rgba(0, 0, 0, 0.35);
-        transition:
-          transform 0.18s ease,
-          box-shadow 0.18s ease,
-          background 0.18s ease;
-        position: relative;
-        overflow: hidden;
+        width: 100%;
       }
+    }
+  </style>
+</head>
 
-      .btn::before {
-        content: "";
-        position: absolute;
-        inset: -40% -20%;
-        background: linear-gradient(
-          120deg,
-          transparent 35%,
-          rgba(255, 255, 255, 0.18),
-          transparent 65%
-        );
-        transform: translateX(-60%) rotate(18deg);
-        transition: transform 0.45s ease;
-      }
+<body>
+  <div class="grid"></div>
+  <div class="leaf one"></div>
+  <div class="leaf two"></div>
 
-      .btn:hover {
-        transform: translateY(-2px) scale(1.03);
-        background: rgba(0, 255, 200, 0.16);
-        box-shadow:
-          0 0 22px rgba(0, 255, 200, 0.35),
-          0 10px 35px rgba(0, 0, 0, 0.5);
-      }
+  <main class="wrap">
+    <section class="card">
 
-      .btn:hover::before {
-        transform: translateX(35%) rotate(18deg);
-      }
-
-      .btn:active {
-        transform: translateY(0px) scale(0.99);
-      }
-
-      .hint {
-        margin-top: 18px;
-        font-size: 12px;
-        color: rgba(207, 255, 246, 0.6);
-        letter-spacing: 1px;
-        position: relative;
-        z-index: 1;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        * {
-          animation: none !important;
-          transition: none !important;
-        }
-      }
-
-      @media (max-width: 420px) {
-        .topline {
-          margin-bottom: 14px;
-        }
-        .btn {
-          width: 100%;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <canvas id="matrix"></canvas>
-    <div class="grid"></div>
-    <div class="vignette"></div>
-    <div class="scan-line"></div>
-
-    <div class="wrap">
-      <div class="card">
+      <div id="startScreen" class="hero">
         <div class="topline">
-          <div class="tag"><span class="dot"></span> SECURE LINK • ONLINE</div>
+          <div class="tag"><span class="dot"></span> STEM/STEAM • ECO MISSION</div>
+          <div class="score-pill">Nhóm 3</div>
         </div>
 
-        <h1 data-text="CYBERSTATION">CYBERSTATION</h1>
-        <div class="subtitle">TACTICAL OPERATIONS CONSOLE</div>
+        <h1>THỬ THÁCH <span>ECOWRAP</span></h1>
 
-        <p class="desc">
-          Khởi tạo hệ thống… Kết nối an toàn đã được thiết lập. Các đặc vụ hãy
-          chuẩn bị nhận nhiệm vụ đầu tiên.
+        <p class="subtitle">
+          Hãy trở thành kĩ sư EcoWrap: nhận diện vật liệu, phát hiện lỗi thiết kế
+          và chọn cấu tạo giúp giữ lạnh tốt hơn cho ly/bình nước.
         </p>
 
-        <div class="actions">
-          <button class="btn" onclick="location.href = 'agent.html'">
-            Truy cập hệ thống
-          </button>
+        <div class="eco-strip">
+          <div class="mini">1. Vật liệu <small>Ghép đúng vai trò</small></div>
+          <div class="mini">2. Lỗi thiết kế <small>Săn lỗi giữ nhiệt kém</small></div>
+          <div class="mini">3. Tối ưu <small>Chọn cấu tạo hợp lí</small></div>
+          <div class="mini">4. Kết luận <small>Ghi nguyên tắc thiết kế</small></div>
         </div>
 
-        <div class="hint">Tip: Double-click tiêu đề để vào Admin.</div>
+        <div class="actions">
+          <button class="btn" onclick="startGame()">Bắt đầu thử thách</button>
+          <button class="btn secondary" onclick="showGuide()">Xem luật chơi</button>
+        </div>
+
+        <div id="guide" class="feedback">
+          Mỗi nhóm hoàn thành 3 chặng. Sau trò chơi, hãy ghi vào phiếu thiết kế
+          các nguyên tắc: vừa khít, nhiều lớp, hạn chế hở mép, dễ tháo lắp,
+          ưu tiên vật liệu tái chế và đảm bảo an toàn.
+        </div>
       </div>
-    </div>
 
-    <script>
-      const canvas = document.getElementById("matrix");
-      const ctx = canvas.getContext("2d");
+      <div id="gameScreen" class="panel hidden">
+        <div class="title-row">
+          <div>
+            <div id="roundLabel" class="round">Chặng 1</div>
+            <h2 id="gameTitle">Ghép vật liệu – đúng vai trò</h2>
+          </div>
+          <div class="score-pill">Điểm: <span id="scoreText">0</span></div>
+        </div>
 
-      function resizeCanvas() {
-        const dpr = Math.max(1, window.devicePixelRatio || 1);
-        canvas.width = Math.floor(window.innerWidth * dpr);
-        canvas.height = Math.floor(window.innerHeight * dpr);
-        canvas.style.width = window.innerWidth + "px";
-        canvas.style.height = window.innerHeight + "px";
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        <div id="matchArea">
+          <p class="question">
+            Chọn vai trò phù hợp cho từng vật liệu dùng trong EcoWrap.
+          </p>
+
+          <div id="matchGrid" class="match-grid"></div>
+
+          <div class="actions">
+            <button class="btn" onclick="checkMatch()">Kiểm tra chặng 1</button>
+          </div>
+
+          <div id="matchFeedback" class="feedback"></div>
+        </div>
+
+        <div id="quizArea" class="hidden">
+          <p id="questionText" class="question"></p>
+          <div id="options" class="options"></div>
+          <div id="quizFeedback" class="feedback"></div>
+
+          <div class="actions">
+            <button id="nextBtn" class="btn hidden" onclick="nextQuestion()">Câu tiếp theo</button>
+          </div>
+
+          <div class="progress">
+            <div id="bar" class="bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="resultScreen" class="panel hidden">
+        <div class="result-box">
+          <div class="tag"><span class="dot"></span> HOÀN THÀNH NHIỆM VỤ</div>
+          <h2>Kết quả thử thách</h2>
+          <div class="big-score"><span id="finalScore">0</span>/<span id="maxScore">0</span></div>
+          <p id="resultMessage" class="subtitle"></p>
+
+          <div class="principles">
+            <div class="principle">Vừa khít</div>
+            <div class="principle">Nhiều lớp</div>
+            <div class="principle">Hạn chế hở mép</div>
+            <div class="principle">Dễ tháo lắp</div>
+            <div class="principle">Vật liệu tái chế</div>
+            <div class="principle">An toàn</div>
+          </div>
+
+          <div class="actions" style="justify-content:center;">
+            <button class="btn" onclick="restartGame()">Chơi lại</button>
+            <button class="btn secondary" onclick="copyPrinciples()">Copy nguyên tắc thiết kế</button>
+          </div>
+
+          <div id="copyFeedback" class="feedback">
+            Đã copy nguyên tắc thiết kế. Hãy dán vào phiếu thiết kế EcoWrap của nhóm.
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    const roles = [
+      "Hạn chế truyền nhiệt nhờ có các túi khí nhỏ",
+      "Góp phần phản xạ bức xạ nhiệt",
+      "Tăng độ bền, tạo lớp ngoài và tăng thẩm mỹ",
+      "Tạo form, giúp sản phẩm cứng cáp hơn",
+      "Cố định, giúp tháo lắp dễ hơn"
+    ];
+
+    const matchItems = [
+      {
+        material: "Xốp hơi / xốp mỏng",
+        answer: "Hạn chế truyền nhiệt nhờ có các túi khí nhỏ"
+      },
+      {
+        material: "Vỏ snack tráng bạc / màng nhôm",
+        answer: "Góp phần phản xạ bức xạ nhiệt"
+      },
+      {
+        material: "Vải cũ / nỉ / khăn cũ",
+        answer: "Tăng độ bền, tạo lớp ngoài và tăng thẩm mỹ"
+      },
+      {
+        material: "Bìa carton",
+        answer: "Tạo form, giúp sản phẩm cứng cáp hơn"
+      },
+      {
+        material: "Dây chun / velcro / băng dính",
+        answer: "Cố định, giúp tháo lắp dễ hơn"
       }
+    ];
 
-      resizeCanvas();
-      window.addEventListener("resize", () => {
-        resizeCanvas();
-        initDrops();
+    const questions = [
+      {
+        round: "Chặng 2",
+        title: "Săn lỗi thiết kế",
+        question: "Vỏ bọc quá rộng, không ôm sát ly/bình sẽ gây vấn đề gì?",
+        options: [
+          "Đẹp hơn và giữ nhiệt tốt hơn",
+          "Dễ hở mép, không khí nóng dễ trao đổi, hiệu quả giữ nhiệt kém",
+          "Làm nước lạnh hơn ngay lập tức",
+          "Không ảnh hưởng gì đến sản phẩm"
+        ],
+        answer: 1,
+        feedback: "Vỏ bọc quá rộng làm mép hở nhiều, không khí nóng dễ tiếp xúc với thành ly/bình."
+      },
+      {
+        round: "Chặng 2",
+        title: "Săn lỗi thiết kế",
+        question: "Nếu không có lớp xốp hoặc lớp cách nhiệt, điều gì có thể xảy ra?",
+        options: [
+          "Nhiệt truyền vào nhanh hơn",
+          "Ly tự giữ lạnh lâu hơn",
+          "Không cần thử nghiệm",
+          "Sản phẩm chắc chắn hơn chắc chắn"
+        ],
+        answer: 0,
+        feedback: "Lớp xốp có các khoảng khí nhỏ, giúp hạn chế quá trình truyền nhiệt vào ly/bình."
+      },
+      {
+        round: "Chặng 2",
+        title: "Săn lỗi thiết kế",
+        question: "Dùng vật liệu bẩn hoặc có cạnh sắc là lỗi liên quan đến tiêu chí nào?",
+        options: [
+          "Màu sắc",
+          "An toàn và vệ sinh",
+          "Cách vẽ biểu đồ",
+          "Tên nhóm"
+        ],
+        answer: 1,
+        feedback: "EcoWrap phải an toàn, sạch và không gây nguy hiểm khi cầm nắm hoặc tháo lắp."
+      },
+      {
+        round: "Chặng 2",
+        title: "Săn lỗi thiết kế",
+        question: "Mép nối bị hở nhiều làm EcoWrap kém hiệu quả vì sao?",
+        options: [
+          "Không khí nóng dễ trao đổi với thành ly/bình",
+          "Ly sẽ nặng hơn",
+          "Biểu đồ khó vẽ hơn",
+          "Logo nhóm bị nhỏ hơn"
+        ],
+        answer: 0,
+        feedback: "Mép hở tạo điều kiện trao đổi nhiệt với môi trường, làm hiệu quả giữ lạnh giảm."
+      },
+      {
+        round: "Chặng 3",
+        title: "Chọn cấu tạo tối ưu",
+        question: "Phương án nào hợp lí nhất để thiết kế EcoWrap?",
+        options: [
+          "Một lớp giấy mỏng quấn quanh ly",
+          "Xốp hơi + vỏ snack tráng bạc + lớp ngoài bằng vải/carton",
+          "Chỉ dùng khăn giấy",
+          "Chỉ dùng băng keo trong"
+        ],
+        answer: 1,
+        feedback: "Cấu tạo nhiều lớp giúp hạn chế các hình thức truyền nhiệt tốt hơn và tận dụng vật liệu tái chế."
+      },
+      {
+        round: "Chặng 3",
+        title: "Chọn cấu tạo tối ưu",
+        question: "Sau trò chơi, nhóm cần ghi nguyên tắc thiết kế nào vào phiếu thiết kế?",
+        options: [
+          "Càng dày càng tốt, không cần thử nghiệm",
+          "Vừa khít, nhiều lớp, hạn chế hở mép, dễ tháo lắp, ưu tiên vật liệu tái chế và an toàn",
+          "Chỉ cần trang trí đẹp",
+          "Chỉ cần dùng thật nhiều băng keo"
+        ],
+        answer: 1,
+        feedback: "Đây là bộ nguyên tắc giúp EcoWrap có cơ sở khoa học, dễ dùng và phù hợp nhiệm vụ STEAM."
+      }
+    ];
+
+    let score = 0;
+    let questionIndex = 0;
+    let answered = false;
+    const matchPoint = 10;
+    const quizPoint = 10;
+    const max = matchItems.length * matchPoint + questions.length * quizPoint;
+
+    function showGuide() {
+      document.getElementById("guide").classList.toggle("show");
+    }
+
+    function startGame() {
+      score = 0;
+      questionIndex = 0;
+      answered = false;
+
+      document.getElementById("startScreen").classList.add("hidden");
+      document.getElementById("resultScreen").classList.add("hidden");
+      document.getElementById("gameScreen").classList.remove("hidden");
+
+      document.getElementById("scoreText").textContent = score;
+      document.getElementById("matchArea").classList.remove("hidden");
+      document.getElementById("quizArea").classList.add("hidden");
+
+      renderMatch();
+    }
+
+    function renderMatch() {
+      const grid = document.getElementById("matchGrid");
+      grid.innerHTML = "";
+
+      matchItems.forEach((item, index) => {
+        const row = document.createElement("div");
+        row.className = "match-item";
+
+        const material = document.createElement("div");
+        material.className = "material";
+        material.textContent = item.material;
+
+        const select = document.createElement("select");
+        select.id = "match-" + index;
+
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "Chọn vai trò của vật liệu";
+        select.appendChild(defaultOption);
+
+        roles.forEach((role) => {
+          const option = document.createElement("option");
+          option.value = role;
+          option.textContent = role;
+          select.appendChild(option);
+        });
+
+        row.appendChild(material);
+        row.appendChild(select);
+        grid.appendChild(row);
+      });
+    }
+
+    function checkMatch() {
+      let correct = 0;
+
+      matchItems.forEach((item, index) => {
+        const select = document.getElementById("match-" + index);
+        if (select.value === item.answer) {
+          correct++;
+          select.style.borderColor = "rgba(22, 163, 74, 0.7)";
+          select.style.background = "rgba(22, 163, 74, 0.08)";
+        } else {
+          select.style.borderColor = "rgba(220, 38, 38, 0.6)";
+          select.style.background = "rgba(220, 38, 38, 0.07)";
+        }
       });
 
-      const letters = "01";
-      const fontSize = 15;
-      let columns = 0;
-      let drops = [];
+      score += correct * matchPoint;
+      document.getElementById("scoreText").textContent = score;
 
-      function initDrops() {
-        columns = Math.floor(window.innerWidth / fontSize);
-        drops = Array.from(
-          { length: columns },
-          () => Math.random() * window.innerHeight,
-        );
+      const feedback = document.getElementById("matchFeedback");
+      feedback.classList.add("show");
+      feedback.innerHTML =
+        `<strong>Chặng 1:</strong> Nhóm trả lời đúng ${correct}/${matchItems.length} vật liệu. ` +
+        `Hãy nhớ: EcoWrap hiệu quả hơn khi biết phối hợp nhiều lớp vật liệu đúng vai trò.`;
+
+      setTimeout(() => {
+        document.getElementById("matchArea").classList.add("hidden");
+        document.getElementById("quizArea").classList.remove("hidden");
+        renderQuestion();
+      }, 1600);
+    }
+
+    function renderQuestion() {
+      answered = false;
+
+      const q = questions[questionIndex];
+      document.getElementById("roundLabel").textContent = q.round;
+      document.getElementById("gameTitle").textContent = q.title;
+      document.getElementById("questionText").textContent = q.question;
+
+      const options = document.getElementById("options");
+      options.innerHTML = "";
+
+      document.getElementById("quizFeedback").classList.remove("show");
+      document.getElementById("quizFeedback").innerHTML = "";
+      document.getElementById("nextBtn").classList.add("hidden");
+
+      q.options.forEach((optionText, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.textContent = String.fromCharCode(65 + index) + ". " + optionText;
+        btn.onclick = () => chooseAnswer(index, btn);
+        options.appendChild(btn);
+      });
+
+      const percent = (questionIndex / questions.length) * 100;
+      document.getElementById("bar").style.width = percent + "%";
+    }
+
+    function chooseAnswer(index) {
+      if (answered) return;
+      answered = true;
+
+      const q = questions[questionIndex];
+      const buttons = document.querySelectorAll(".option");
+
+      buttons.forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === q.answer) btn.classList.add("correct");
+        if (i === index && i !== q.answer) btn.classList.add("wrong");
+      });
+
+      if (index === q.answer) {
+        score += quizPoint;
+        document.getElementById("scoreText").textContent = score;
       }
-      initDrops();
 
-      function draw() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.10)";
-        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+      const feedback = document.getElementById("quizFeedback");
+      feedback.classList.add("show");
+      feedback.innerHTML =
+        (index === q.answer ? "<strong>Chính xác!</strong> " : "<strong>Chưa đúng.</strong> ") +
+        q.feedback;
 
-        ctx.font = `${fontSize}px Share Tech Mono, monospace`;
+      document.getElementById("nextBtn").classList.remove("hidden");
+    }
 
-        for (let i = 0; i < drops.length; i++) {
-          const text = letters[(Math.random() * letters.length) | 0];
+    function nextQuestion() {
+      questionIndex++;
 
-          const alpha = 0.55 + Math.random() * 0.45;
-          ctx.fillStyle = `rgba(0, 255, 200, ${alpha.toFixed(2)})`;
+      if (questionIndex >= questions.length) {
+        showResult();
+      } else {
+        renderQuestion();
+      }
+    }
 
-          const x = i * fontSize;
-          const y = drops[i];
+    function showResult() {
+      document.getElementById("gameScreen").classList.add("hidden");
+      document.getElementById("resultScreen").classList.remove("hidden");
 
-          ctx.fillText(text, x, y);
+      document.getElementById("finalScore").textContent = score;
+      document.getElementById("maxScore").textContent = max;
 
-          drops[i] += fontSize;
+      const percent = Math.round((score / max) * 100);
+      let message = "";
 
-          if (drops[i] > window.innerHeight && Math.random() > 0.975) {
-            drops[i] = -Math.random() * 200;
-          }
-        }
+      if (percent >= 85) {
+        message = "Xuất sắc! Nhóm đã sẵn sàng bước vào thiết kế EcoWrap.";
+      } else if (percent >= 60) {
+        message = "Hoàn thành tốt! Nhóm cần chú ý thêm vai trò vật liệu và lỗi hở mép khi thiết kế.";
+      } else {
+        message = "Nhóm cần ôn lại vai trò vật liệu trước khi thiết kế EcoWrap.";
       }
 
-      setInterval(draw, 40);
-    </script>
-  </body>
+      document.getElementById("resultMessage").textContent = message;
+      document.getElementById("bar").style.width = "100%";
+    }
+
+    function restartGame() {
+      document.getElementById("resultScreen").classList.add("hidden");
+      document.getElementById("startScreen").classList.remove("hidden");
+      document.getElementById("guide").classList.remove("show");
+      document.getElementById("copyFeedback").classList.remove("show");
+    }
+
+    function copyPrinciples() {
+      const text =
+        "Nguyên tắc thiết kế EcoWrap: vừa khít với ly/bình; cấu tạo nhiều lớp; hạn chế hở mép; dễ tháo lắp; ưu tiên vật liệu tái chế; đảm bảo an toàn và vệ sinh.";
+
+      navigator.clipboard?.writeText(text);
+      document.getElementById("copyFeedback").classList.add("show");
+    }
+  </script>
+</body>
 </html>
+```
