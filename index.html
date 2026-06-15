@@ -1,1 +1,486 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberStation</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #05060a;
+        --neon: #00ffc8;
+        --neon2: #7c4dff;
+        --text: #cffff6;
+        --muted: rgba(207, 255, 246, 0.75);
+        --glass: rgba(6, 14, 16, 0.55);
+        --stroke: rgba(0, 255, 200, 0.22);
+        --shadow: 0 0 24px rgba(0, 255, 200, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Share Tech Mono", monospace;
+        background: radial-gradient(
+          1200px 800px at 50% 40%,
+          #081018,
+          var(--bg)
+        );
+        color: var(--text);
+        overflow: hidden;
+      }
+
+      canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+      }
+
+      .grid {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(0, 255, 200, 0.06) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(0, 255, 200, 0.06) 1px,
+            transparent 1px
+          );
+        background-size: 48px 48px;
+        mask-image: radial-gradient(
+          circle at 50% 40%,
+          #000 45%,
+          transparent 75%
+        );
+        pointer-events: none;
+      }
+
+      .vignette {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: radial-gradient(
+          circle at 50% 40%,
+          transparent 35%,
+          rgba(0, 0, 0, 0.6) 80%
+        );
+        pointer-events: none;
+      }
+
+      .scan-line {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 255, 200, 0.35),
+          transparent
+        );
+        filter: blur(0.3px);
+        animation: scan 5s linear infinite;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      @keyframes scan {
+        0% {
+          top: -5%;
+          opacity: 0.3;
+        }
+        20% {
+          opacity: 0.65;
+        }
+        100% {
+          top: 105%;
+          opacity: 0.25;
+        }
+      }
+
+      .wrap {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 22px;
+      }
+
+      .card {
+        width: min(720px, 92vw);
+        padding: clamp(18px, 4.2vw, 34px);
+        border-radius: 18px;
+        background: var(--glass);
+        border: 1px solid var(--stroke);
+        box-shadow:
+          0 0 0 1px rgba(0, 255, 200, 0.06),
+          0 18px 60px rgba(0, 0, 0, 0.6),
+          var(--shadow);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before,
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 18px;
+        pointer-events: none;
+      }
+
+      .card::before {
+        background: conic-gradient(
+          from 210deg at 50% 50%,
+          rgba(0, 255, 200, 0),
+          rgba(0, 255, 200, 0.18),
+          rgba(124, 77, 255, 0.18),
+          rgba(0, 255, 200, 0)
+        );
+        filter: blur(18px);
+        opacity: 0.55;
+      }
+
+      .card::after {
+        background:
+          radial-gradient(
+            600px 240px at 20% 0%,
+            rgba(0, 255, 200, 0.18),
+            transparent 55%
+          ),
+          radial-gradient(
+            600px 240px at 90% 120%,
+            rgba(124, 77, 255, 0.18),
+            transparent 55%
+          );
+        opacity: 0.9;
+      }
+
+      .topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 255, 200, 0.25);
+        color: rgba(0, 255, 200, 0.95);
+        background: rgba(0, 255, 200, 0.06);
+        letter-spacing: 1px;
+        font-size: 13px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--neon);
+        box-shadow: 0 0 12px rgba(0, 255, 200, 0.9);
+        animation: pulse 1.6s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.9;
+        }
+        50% {
+          transform: scale(1.35);
+          opacity: 1;
+        }
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(34px, 7.5vw, 70px);
+        letter-spacing: 5px;
+        color: var(--neon);
+        text-shadow:
+          0 0 18px rgba(0, 255, 200, 0.65),
+          0 0 44px rgba(0, 255, 200, 0.25);
+        position: relative;
+        z-index: 1;
+        user-select: none;
+        cursor: pointer;
+      }
+
+      h1::before,
+      h1::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        overflow: hidden;
+        opacity: 0.55;
+        pointer-events: none;
+      }
+
+      h1::before {
+        transform: translate(2px, 0);
+        color: rgba(124, 77, 255, 0.75);
+        clip-path: inset(0 0 55% 0);
+        animation: glitch 1.8s infinite linear alternate-reverse;
+      }
+
+      h1::after {
+        transform: translate(-2px, 0);
+        color: rgba(0, 255, 200, 0.65);
+        clip-path: inset(55% 0 0 0);
+        animation: glitch 1.35s infinite linear alternate;
+      }
+
+      @keyframes glitch {
+        0% {
+          filter: blur(0px);
+          opacity: 0.5;
+        }
+        20% {
+          transform: translate(3px, -1px);
+          opacity: 0.65;
+        }
+        40% {
+          transform: translate(-3px, 1px);
+          opacity: 0.55;
+        }
+        60% {
+          transform: translate(2px, 0px);
+          opacity: 0.7;
+        }
+        80% {
+          transform: translate(-2px, 0px);
+          opacity: 0.55;
+        }
+        100% {
+          transform: translate(1px, -1px);
+          opacity: 0.6;
+        }
+      }
+
+      .subtitle {
+        margin: 8px 0 0;
+        color: var(--muted);
+        letter-spacing: 2px;
+        font-size: clamp(12px, 2.7vw, 16px);
+        position: relative;
+        z-index: 1;
+      }
+
+      .desc {
+        margin: 18px 0 24px;
+        font-size: clamp(14px, 3.4vw, 20px);
+        color: rgba(207, 255, 246, 0.86);
+        line-height: 1.55;
+        text-shadow: 0 0 12px rgba(0, 255, 200, 0.18);
+        position: relative;
+        z-index: 1;
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn {
+        padding: 14px 34px;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 255, 200, 0.5);
+        background: rgba(0, 255, 200, 0.06);
+        color: var(--neon);
+        font-size: clamp(15px, 3.6vw, 20px);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow:
+          0 0 0 1px rgba(0, 255, 200, 0.12) inset,
+          0 10px 30px rgba(0, 0, 0, 0.35);
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          background 0.18s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: -40% -20%;
+        background: linear-gradient(
+          120deg,
+          transparent 35%,
+          rgba(255, 255, 255, 0.18),
+          transparent 65%
+        );
+        transform: translateX(-60%) rotate(18deg);
+        transition: transform 0.45s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px) scale(1.03);
+        background: rgba(0, 255, 200, 0.16);
+        box-shadow:
+          0 0 22px rgba(0, 255, 200, 0.35),
+          0 10px 35px rgba(0, 0, 0, 0.5);
+      }
+
+      .btn:hover::before {
+        transform: translateX(35%) rotate(18deg);
+      }
+
+      .btn:active {
+        transform: translateY(0px) scale(0.99);
+      }
+
+      .hint {
+        margin-top: 18px;
+        font-size: 12px;
+        color: rgba(207, 255, 246, 0.6);
+        letter-spacing: 1px;
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .topline {
+          margin-bottom: 14px;
+        }
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="matrix"></canvas>
+    <div class="grid"></div>
+    <div class="vignette"></div>
+    <div class="scan-line"></div>
+
+    <div class="wrap">
+      <div class="card">
+        <div class="topline">
+          <div class="tag"><span class="dot"></span> SECURE LINK • ONLINE</div>
+        </div>
+
+        <h1 data-text="CYBERSTATION">CYBERSTATION</h1>
+        <div class="subtitle">TACTICAL OPERATIONS CONSOLE</div>
+
+        <p class="desc">
+          Khởi tạo hệ thống… Kết nối an toàn đã được thiết lập. Các đặc vụ hãy
+          chuẩn bị nhận nhiệm vụ đầu tiên.
+        </p>
+
+        <div class="actions">
+          <button class="btn" onclick="location.href = 'agent.html'">
+            Truy cập hệ thống
+          </button>
+        </div>
+
+        <div class="hint">Tip: Double-click tiêu đề để vào Admin.</div>
+      </div>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("matrix");
+      const ctx = canvas.getContext("2d");
+
+      function resizeCanvas() {
+        const dpr = Math.max(1, window.devicePixelRatio || 1);
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = window.innerWidth + "px";
+        canvas.style.height = window.innerHeight + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      resizeCanvas();
+      window.addEventListener("resize", () => {
+        resizeCanvas();
+        initDrops();
+      });
+
+      const letters = "01";
+      const fontSize = 15;
+      let columns = 0;
+      let drops = [];
+
+      function initDrops() {
+        columns = Math.floor(window.innerWidth / fontSize);
+        drops = Array.from(
+          { length: columns },
+          () => Math.random() * window.innerHeight,
+        );
+      }
+      initDrops();
+
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.10)";
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+        ctx.font = `${fontSize}px Share Tech Mono, monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = letters[(Math.random() * letters.length) | 0];
+
+          const alpha = 0.55 + Math.random() * 0.45;
+          ctx.fillStyle = `rgba(0, 255, 200, ${alpha.toFixed(2)})`;
+
+          const x = i * fontSize;
+          const y = drops[i];
+
+          ctx.fillText(text, x, y);
+
+          drops[i] += fontSize;
+
+          if (drops[i] > window.innerHeight && Math.random() > 0.975) {
+            drops[i] = -Math.random() * 200;
+          }
+        }
+      }
+
+      setInterval(draw, 40);
+    </script>
+  </body>
+</html>
