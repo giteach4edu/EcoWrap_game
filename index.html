@@ -1319,57 +1319,57 @@ h1::after {
         renderQuestion();
       }
     }
+function showResult() {
+  document.getElementById("gameScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.remove("hidden");
 
-    function showResult() {
-      document.getElementById("gameScreen").classList.add("hidden");
-      document.getElementById("resultScreen").classList.remove("hidden");
+  document.getElementById("finalScore").textContent = score;
+  document.getElementById("maxScore").textContent = maxScore;
 
-      document.getElementById("finalScore").textContent = score;
-      document.getElementById("maxScore").textContent = maxScore;
+  const allUnlocked =
+    unlockRules.mission1.unlocked &&
+    unlockRules.mission2.unlocked &&
+    unlockRules.mission3.unlocked &&
+    unlockRules.mission4.unlocked;
 
-      const allUnlocked =
-        unlockRules.mission1.unlocked &&
-        unlockRules.mission2.unlocked &&
-        unlockRules.mission3.unlocked &&
-        unlockRules.mission4.unlocked;
+  const principlesBox = document.getElementById("principlesBox");
+  const copyBtn = document.getElementById("copyBtn");
+  const unlockMessage = document.getElementById("unlockMessage");
 
-      const principlesBox = document.getElementById("principlesBox");
-      const copyBtn = document.getElementById("copyBtn");
-      const unlockMessage = document.getElementById("unlockMessage");
+  if (allUnlocked) {
+    document.getElementById("resultMessage").textContent =
+      "Xuất sắc. Nhóm đã mở khóa đủ 4 mảnh ghép thiết kế EcoWrap.";
 
-      if (allUnlocked) {
-        document.getElementById("resultMessage").textContent =
-          "Xuất sắc. Nhóm đã mở khóa đủ 4 mảnh ghép thiết kế EcoWrap.";
+    unlockMessage.innerHTML =
+      `<strong>MÃ THIẾT KẾ ĐÃ MỞ KHÓA:</strong><br>
+      <span style="color:#ff9f1c; font-size: 1.15em;">
+        CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
+      </span>
+      <br><br>
+      Đại diện nhóm chạy lên bảng ghi mã thiết kế và giải thích nhanh một từ khóa
+      trước khi chuyển sang hoạt động thiết kế EcoWrap.`;
 
-        unlockMessage.innerHTML =
-          `<strong>MÃ THIẾT KẾ ĐÃ MỞ KHÓA:</strong><br>
-          <span style="color:#ff9f1c; font-size: 1.15em;">
-            CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
-          </span>
-  
+    principlesBox.classList.remove("hidden");
+    copyBtn.classList.remove("hidden");
 
-        principlesBox.classList.remove("hidden");
-        copyBtn.classList.remove("hidden");
+  } else {
+    document.getElementById("resultMessage").textContent =
+      "Chưa mở khóa đủ 4 mảnh ghép thiết kế EcoWrap.";
 
-      } else {
-        document.getElementById("resultMessage").textContent =
-          "Chưa mở khóa đủ 4 mảnh ghép thiết kế EcoWrap.";
+    unlockMessage.innerHTML =
+      `<strong>MÃ THIẾT KẾ CHƯA HOÀN THÀNH:</strong><br>
+      <span style="color:#ff3b5f; font-size: 1.15em;">
+        Nhóm cần mở khóa đủ: CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
+      </span>
+      <br><br>
+      Hãy bấm “Thực hiện lại” để chơi lại từ đầu và hoàn thành đầy đủ các nhiệm vụ.`;
 
-        unlockMessage.innerHTML =
-          `<strong>MÃ THIẾT KẾ CHƯA HOÀN THÀNH:</strong><br>
-          <span style="color:#ff3b5f; font-size: 1.15em;">
-            Nhóm cần mở khóa đủ: CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
-          </span>
-          <br><br>
-          Hãy bấm “Thực hiện lại” để chơi lại từ đầu và hoàn thành đầy đủ các nhiệm vụ.`;
+    principlesBox.classList.add("hidden");
+    copyBtn.classList.add("hidden");
+  }
 
-        principlesBox.classList.add("hidden");
-        copyBtn.classList.add("hidden");
-      }
-
-      document.getElementById("bar").style.width = "100%";
-    }
-
+  document.getElementById("bar").style.width = "100%";
+}
     function restartGame() {
       document.getElementById("resultScreen").classList.add("hidden");
       document.getElementById("gameScreen").classList.add("hidden");
