@@ -563,7 +563,7 @@
 </p>
 
         <div class="actions">
-          <button class="btn" onclick="startGame()">Truy cập nhiệm vụ</button>
+          <button class="btn" onclick="showPasswordBox()">Truy cập nhiệm vụ</button>
          <button class="btn secondary" onclick="showGuideScreen()">Hướng dẫn nhanh</button>
         </div>
 
@@ -625,7 +625,7 @@
 
   <div class="actions">
     <button class="btn" onclick="backToStart()">Quay lại</button>
-    <button class="btn secondary" onclick="startGame()">Bắt đầu nhiệm vụ</button>
+    <button class="btn secondary" onclick="showPasswordBox()">Bắt đầu nhiệm vụ</button>
   </div>
 </div>
       
@@ -918,7 +918,7 @@ let questionIndex = 0;
 let answered = false;
 let locked = false;
 let hintUsed = false;
-
+const GAME_PASSWORD = "ECO123";
 const matchPoint = 1;
 const quizPoint = 1;
 const maxScore = matchItems.length + questions.length;
@@ -943,6 +943,35 @@ function backToStart() {
   document.getElementById("guideScreen").classList.add("hidden");
   document.getElementById("startScreen").classList.remove("hidden");
 }
+
+    function showPasswordBox() {
+  document.getElementById("passwordBox").classList.add("show");
+  document.getElementById("passwordFeedback").textContent = "";
+  document.getElementById("passwordInput").value = "";
+
+  setTimeout(() => {
+    document.getElementById("passwordInput").focus();
+  }, 100);
+}
+
+function hidePasswordBox() {
+  document.getElementById("passwordBox").classList.remove("show");
+  document.getElementById("passwordFeedback").textContent = "";
+  document.getElementById("passwordInput").value = "";
+}
+
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value.trim();
+
+  if (input.toUpperCase() === GAME_PASSWORD) {
+    hidePasswordBox();
+    startGame();
+  } else {
+    document.getElementById("passwordFeedback").textContent =
+      "Mật khẩu chưa đúng. Hãy nghe giáo viên cung cấp mã nhiệm vụ.";
+  }
+}
+    
     function startGame() {
       score = 0;
       questionIndex = 0;
