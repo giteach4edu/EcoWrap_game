@@ -624,7 +624,7 @@
         <div class="final-score"><span id="finalScore">0</span>/<span id="maxScore">0</span></div>
         <p id="resultMessage" class="desc" style="text-align:center;"></p>
 
-<p class="desc" style="text-align:center; margin-top: 4px;">
+<p id="unlockMessage" class="desc" style="text-align:center; margin-top: 4px;"></p>
   <strong>MÃ THIẾT KẾ ĐÃ MỞ KHÓA:</strong><br>
   <span style="color:#ff9f1c; font-size: 1.15em;">
     CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
@@ -952,17 +952,15 @@ function lockRetry(callback) {
           `<strong>TRY AGAIN.</strong> Hãy ghép lại vai trò của từng vật liệu để mở khóa từ khóa.`;
       });
 
-    } else {
-      feedback.innerHTML =
-        `<strong>CHƯA ĐẠT:</strong> Đúng ${correct}/5. ` +
-        `Nhóm chưa mở khóa được từ khóa nhiệm vụ 01. Hãy ghi chú lại phần vật liệu cần xem lại.`;
+   } else {
+  feedback.innerHTML =
+    `<strong>CHƯA ĐẠT:</strong> Đúng ${correct}/5. ` +
+    `Nhóm chưa mở khóa được từ khóa nhiệm vụ 01. Hãy bấm “Thực hiện lại” để chơi lại từ đầu.`;
 
-      setTimeout(() => {
-        document.getElementById("matchArea").classList.add("hidden");
-        document.getElementById("quizArea").classList.remove("hidden");
-        renderQuestion();
-      }, 2200);
-    }
+  setTimeout(() => {
+    showResult();
+  }, 2200);
+}
   }
 }
     function renderQuestion() {
@@ -1085,45 +1083,45 @@ function useHint() {
       }
     }
 
-    function showResult() {
-      document.getElementById("gameScreen").classList.add("hidden");
-      document.getElementById("resultScreen").classList.remove("hidden");
+  function showResult() {
+  document.getElementById("gameScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.remove("hidden");
 
-      document.getElementById("finalScore").textContent = score;
-      document.getElementById("maxScore").textContent = maxScore;
+  document.getElementById("finalScore").textContent = score;
+  document.getElementById("maxScore").textContent = maxScore;
 
-      const percent = Math.round((score / maxScore) * 100);
-      let message = "";
+  const allUnlocked =
+    unlockRules.mission1.unlocked &&
+    unlockRules.mission2.unlocked &&
+    unlockRules.mission3.unlocked;
 
-      if (percent >= 85) {
-  message = "Xuất sắc. Nhóm đã sẵn sàng bước vào hoạt động thiết kế EcoWrap.";
-} else if (percent >= 60) {
-  message = "Hoàn thành. Nhóm cần chú ý thêm vai trò vật liệu, lỗi hở mép và độ vừa khít khi thiết kế.";
-} else {
-  message = "Cần ôn lại vai trò vật liệu và nguyên tắc thiết kế trước khi phác thảo EcoWrap.";
+  if (allUnlocked) {
+    document.getElementById("resultMessage").textContent =
+      "Xuất sắc. Nhóm đã mở khóa đủ mã thiết kế EcoWrap.";
+
+    document.getElementById("unlockMessage").innerHTML =
+      `<strong>MÃ THIẾT KẾ ĐÃ MỞ KHÓA:</strong><br>
+      <span style="color:#ff9f1c; font-size: 1.15em;">
+        CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
+      </span>
+      <br><br>
+      Đại diện nhóm chạy lên bảng ghi mã thiết kế và giải thích nhanh một từ khóa
+      trước khi chuyển sang hoạt động thiết kế EcoWrap.`;
+  } else {
+    document.getElementById("resultMessage").textContent =
+      "Chưa mở khóa đủ mã thiết kế EcoWrap.";
+
+    document.getElementById("unlockMessage").innerHTML =
+      `<strong>MÃ THIẾT KẾ CHƯA HOÀN THÀNH:</strong><br>
+      <span style="color:#ff3b5f; font-size: 1.15em;">
+        Chưa đủ điều kiện mở khóa từ khóa AN TOÀN
+      </span>
+      <br><br>
+      Nhóm cần thực hiện lại nhiệm vụ chưa đạt để mở khóa đầy đủ mã thiết kế.`;
+  }
+
+  document.getElementById("bar").style.width = "100%";
 }
-
-      document.getElementById("resultMessage").textContent = message;
-      document.getElementById("bar").style.width = "100%";
-    }
-
-    function restartGame() {
-      document.getElementById("resultScreen").classList.add("hidden");
-      document.getElementById("startScreen").classList.remove("hidden");
-      document.getElementById("guide").classList.remove("show");
-      document.getElementById("copyFeedback").classList.remove("show");
-    }
-
-    function copyPrinciples() {
-      const text =
-        "Nguyên tắc thiết kế EcoWrap: vừa khít với ly/bình; cấu tạo nhiều lớp; hạn chế hở mép; dễ tháo lắp; ưu tiên vật liệu tái chế; đảm bảo an toàn và vệ sinh.";
-
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(text);
-      }
-
-      document.getElementById("copyFeedback").classList.add("show");
-    }
   </script>
 </body>
 </html>
