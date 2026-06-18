@@ -360,6 +360,20 @@ h1::after {
       display: grid;
       gap: 12px;
     }
+    .quiz-slide {
+  animation: slideInSmooth 0.32s ease both;
+}
+
+@keyframes slideInSmooth {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
     .option {
       text-align: left;
@@ -375,10 +389,11 @@ h1::after {
       transition: 0.16s ease;
     }
 
-    .option:hover {
-      transform: translateX(3px);
-      background: rgba(0, 255, 200, 0.1);
-    }
+  .option:hover {
+  transform: none;
+  background: rgba(0, 255, 200, 0.1);
+  box-shadow: 0 0 12px rgba(0, 255, 200, 0.18);
+}
 
     .option.correct {
       border-color: rgba(0, 255, 200, 0.7);
