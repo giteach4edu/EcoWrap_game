@@ -564,34 +564,9 @@
 
         <div class="actions">
           <button class="btn" onclick="startGame()">Truy cập nhiệm vụ</button>
-          <button class="btn secondary" onclick="toggleGuide()">Hướng dẫn nhanh</button>
+         <button class="btn secondary" onclick="showGuideScreen()">Hướng dẫn nhanh</button>
         </div>
 
-<div id="guide" class="feedback">
-  <strong>HƯỚNG DẪN NHANH</strong><br><br>
-
-  Trò chơi gồm 3 nhiệm vụ. Mỗi ý đúng được tính 1 điểm. 
-  Hoàn thành đủ điểm yêu cầu ở từng nhiệm vụ, nhóm sẽ mở khóa được một từ khóa thiết kế EcoWrap.<br><br>
-
-  <strong>Nhiệm vụ 01 – Phân tích vật liệu:</strong><br>
-  Ghép vật liệu với vai trò phù hợp. Đạt từ 3/4 ý đúng trở lên để mở khóa từ khóa đầu tiên.<br><br>
-
-  <strong>Nhiệm vụ 02 – Nhận diện lỗi thiết kế:</strong><br>
-  Trả lời các câu hỏi về lỗi thường gặp khi thiết kế EcoWrap. Đạt từ 2/3 ý đúng trở lên để mở khóa từ khóa tiếp theo.<br><br>
-
-  <strong>Nhiệm vụ 03 – Chọn cấu tạo tối ưu:</strong><br>
-  Chọn phương án thiết kế hợp lí dựa trên kiến thức về sự truyền nhiệt. Đạt đủ điểm yêu cầu để mở khóa từ khóa cuối của nhiệm vụ.<br><br>
-
-  <strong>Quyền gợi ý:</strong><br>
-  Ở phần câu hỏi trắc nghiệm, nhóm có thể bấm nút “Gợi ý (-5 giây)” khi gặp khó khăn. Khi dùng gợi ý, hệ thống sẽ tạm khóa câu trả lời trong 5 giây để nhóm đọc gợi ý và suy nghĩ lại.<br><br>
-
-  <strong>Quyền làm lại:</strong><br>
-  Nếu chưa đạt điểm mở khóa ở một nhiệm vụ, nhóm được làm lại 1 lần. Trước khi làm lại, hệ thống sẽ tạm dừng 5 giây.<br><br>
-
-  <strong>Mã thiết kế EcoWrap:</strong><br>
-  Khi mở khóa đủ các từ khóa, nhóm sẽ nhận được mã thiết kế hoàn chỉnh. Đại diện nhóm chạy lên bảng ghi mã và giải thích nhanh một từ khóa trước khi chuyển sang hoạt động thiết kế sản phẩm.
-</div>
-```
 
       </div>
 
@@ -618,7 +593,66 @@
 
           <div id="matchFeedback" class="feedback"></div>
         </div>
+<div id="guideScreen" class="hidden">
+  <div class="topline">
+    <div class="tag"><span class="dot"></span> GAME GUIDE</div>
+    <div class="score">QUICK GUIDE</div>
+  </div>
 
+  <h2 class="panel-title">Hướng dẫn nhanh</h2>
+
+  <p class="desc">
+    Trò chơi gồm <strong>3 nhiệm vụ</strong>. Mỗi ý đúng được tính <strong>1 điểm</strong>.
+    Hoàn thành đủ điểm yêu cầu ở từng nhiệm vụ, nhóm sẽ mở khóa được một từ khóa thiết kế EcoWrap.
+  </p>
+
+  <div class="mission-grid">
+    <div class="mission">
+      <strong>NHIỆM VỤ 01</strong>
+      Phân tích vật liệu.<br><br>
+      Đạt từ <span style="color:#ff9f1c;">3/4 ý đúng</span> để mở khóa từ khóa đầu tiên.
+    </div>
+
+    <div class="mission">
+      <strong>NHIỆM VỤ 02</strong>
+      Nhận diện lỗi thiết kế.<br><br>
+      Đạt từ <span style="color:#ff9f1c;">2/3 ý đúng</span> để mở khóa từ khóa tiếp theo.
+    </div>
+
+    <div class="mission">
+      <strong>NHIỆM VỤ 03</strong>
+      Chọn cấu tạo tối ưu.<br><br>
+      Đạt đủ điểm yêu cầu để mở khóa từ khóa nhiệm vụ cuối.
+    </div>
+
+    <div class="mission">
+      <strong>MÃ THIẾT KẾ</strong>
+      Mở khóa đủ từ khóa để nhận mã thiết kế EcoWrap hoàn chỉnh.
+    </div>
+  </div>
+
+  <p class="desc">
+    <strong>Quyền gợi ý:</strong> Ở phần câu hỏi trắc nghiệm, nhóm có thể bấm nút
+    <span style="color:#ff9f1c;">“Gợi ý (-5 giây)”</span> khi gặp khó khăn.
+    Khi dùng gợi ý, hệ thống sẽ tạm khóa câu trả lời trong 5 giây để nhóm đọc gợi ý và suy nghĩ lại.
+  </p>
+
+  <p class="desc">
+    <strong>Quyền làm lại:</strong> Nếu chưa đạt điểm mở khóa ở một nhiệm vụ,
+    nhóm được làm lại <strong>1 lần</strong>. Trước khi làm lại, hệ thống sẽ tạm dừng 5 giây.
+  </p>
+
+  <p class="desc">
+    <strong>Sau khi hoàn thành:</strong> Đại diện nhóm chạy lên bảng ghi mã thiết kế
+    và giải thích nhanh một từ khóa trước khi chuyển sang hoạt động thiết kế sản phẩm.
+  </p>
+
+  <div class="actions">
+    <button class="btn" onclick="backToStart()">Quay lại</button>
+    <button class="btn secondary" onclick="startGame()">Bắt đầu nhiệm vụ</button>
+  </div>
+</div>
+        
         <div id="quizArea" class="hidden">
           <p id="questionText" class="question"></p>
           <div id="options" class="options"></div>
@@ -838,10 +872,15 @@ const unlockRules = {
 let mission1Score = 0;
 let mission2Score = 0;
 let mission3Score = 0;
-    function toggleGuide() {
-      document.getElementById("guide").classList.toggle("show");
-    }
+    function showGuideScreen() {
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("guideScreen").classList.remove("hidden");
+}
 
+function backToStart() {
+  document.getElementById("guideScreen").classList.add("hidden");
+  document.getElementById("startScreen").classList.remove("hidden");
+}
     function startGame() {
       score = 0;
       questionIndex = 0;
