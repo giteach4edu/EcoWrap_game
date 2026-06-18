@@ -570,10 +570,72 @@
 
       </div>
 <div id="guideScreen" class="hidden">
+ <div class="actions">
+  <button class="btn" onclick="startGame()">Truy cập nhiệm vụ</button>
+  <button class="btn secondary" onclick="showGuideScreen()">Hướng dẫn nhanh</button>
+</div>
+
+</div>
+
+<div id="guideScreen" class="hidden">
   <div class="topline">
     <div class="tag"><span class="dot"></span> GAME GUIDE</div>
     <div class="score">QUICK GUIDE</div>
   </div>
+
+  <h2 class="panel-title">Hướng dẫn nhanh</h2>
+
+  <p class="desc">
+    Trò chơi gồm <strong>3 nhiệm vụ</strong>. Mỗi ý đúng được tính <strong>1 điểm</strong>.
+    Hoàn thành đủ điểm yêu cầu ở từng nhiệm vụ, nhóm sẽ mở khóa được một từ khóa thiết kế EcoWrap.
+  </p>
+
+  <div class="mission-grid">
+    <div class="mission">
+      <strong>NHIỆM VỤ 01</strong>
+      Phân tích vật liệu.<br><br>
+      Đạt từ <span style="color:#ff9f1c;">3/4 ý đúng</span> để mở khóa từ khóa đầu tiên.
+    </div>
+
+    <div class="mission">
+      <strong>NHIỆM VỤ 02</strong>
+      Nhận diện lỗi thiết kế.<br><br>
+      Đạt từ <span style="color:#ff9f1c;">2/3 ý đúng</span> để mở khóa từ khóa tiếp theo.
+    </div>
+
+    <div class="mission">
+      <strong>NHIỆM VỤ 03</strong>
+      Chọn cấu tạo tối ưu.<br><br>
+      Đạt từ <span style="color:#ff9f1c;">2/2 ý đúng</span> để mở khóa từ khóa nhiệm vụ cuối.
+    </div>
+
+    <div class="mission">
+      <strong>MÃ THIẾT KẾ</strong>
+      Mở khóa đủ 3 từ khóa để nhận mã thiết kế EcoWrap hoàn chỉnh.
+    </div>
+  </div>
+
+  <p class="desc">
+    <strong>Quyền gợi ý:</strong> Ở phần câu hỏi trắc nghiệm, nhóm có thể bấm nút
+    <span style="color:#ff9f1c;">“Gợi ý (-5 giây)”</span> khi gặp khó khăn.
+    Khi dùng gợi ý, hệ thống sẽ tạm khóa câu trả lời trong 5 giây để nhóm đọc gợi ý và suy nghĩ lại.
+  </p>
+
+  <p class="desc">
+    <strong>Quyền làm lại:</strong> Nếu chưa đạt điểm mở khóa ở một nhiệm vụ,
+    nhóm được làm lại <strong>1 lần</strong>. Trước khi làm lại, hệ thống sẽ tạm dừng 5 giây.
+  </p>
+
+  <p class="desc">
+    <strong>Sau khi hoàn thành:</strong> Đại diện nhóm chạy lên bảng ghi mã thiết kế
+    và giải thích nhanh một từ khóa trước khi chuyển sang hoạt động thiết kế sản phẩm.
+  </p>
+
+  <div class="actions">
+    <button class="btn" onclick="backToStart()">Quay lại</button>
+    <button class="btn secondary" onclick="startGame()">Bắt đầu nhiệm vụ</button>
+  </div>
+</div>
       
       <div id="gameScreen" class="hidden">
         <div class="topline">
