@@ -524,10 +524,13 @@
         <h1 data-text="ECOWRAP LAB"> THỬ THÁCH ECOWRAP </h1>
         <div class="subtitle">TACTICAL ECO DESIGN CONSOLE</div>
 
-        <p class="desc">
-          Khởi tạo nhiệm vụ… Các kĩ sư hãy phân tích vật liệu, phát hiện lỗi thiết kế
-          và lựa chọn cấu tạo tối ưu cho vỏ bọc giữ nhiệt xanh.
-        </p>
+       <p class="desc">
+  Hoàn thành nhiệm vụ… Các kĩ sư hãy phân tích vật liệu, phát hiện lỗi thiết kế
+  và lựa chọn cấu tạo tối ưu cho vỏ bọc giữ nhiệt xanh.
+  <br><br>
+  <strong>Mục tiêu:</strong> Rút ra nguyên tắc thiết kế EcoWrap trước khi đo kích thước,
+  chọn vật liệu và phác thảo bản thiết kế sản phẩm.
+</p>
 
         <div class="mission-grid">
           <div class="mission">
@@ -549,10 +552,11 @@
           <button class="btn secondary" onclick="toggleGuide()">Hướng dẫn nhanh</button>
         </div>
 
-        <div id="guide" class="feedback">
-          Hoàn thành 3 nhiệm vụ. Sau trò chơi, ghi vào phiếu thiết kế các nguyên tắc:
-          vừa khít – nhiều lớp – hạn chế hở mép – dễ tháo lắp – ưu tiên vật liệu tái chế – an toàn.
-        </div>
+       <div id="guide" class="feedback">
+  Hoàn thành 3 nhiệm vụ: phân tích vật liệu, nhận diện lỗi thiết kế và chọn phương án tối ưu.
+  Sau trò chơi, ghi vào phiếu thiết kế các nguyên tắc:
+  vừa khít – nhiều lớp – hạn chế hở mép – dễ tháo lắp – ưu tiên vật liệu tái chế – an toàn.
+</div>
       </div>
 
       <div id="gameScreen" class="hidden">
@@ -585,8 +589,9 @@
           <div id="quizFeedback" class="feedback"></div>
 
           <div class="actions">
-            <button id="nextBtn" class="btn hidden" onclick="nextQuestion()">Tiếp tục</button>
-          </div>
+  <button id="hintBtn" class="btn secondary" onclick="useHint()">Gợi ý (-5 giây)</button>
+  <button id="nextBtn" class="btn hidden" onclick="nextQuestion()">Tiếp tục</button>
+</div>
 
           <div class="progress">
             <div id="bar" class="bar"></div>
@@ -603,7 +608,10 @@
         <h2 class="panel-title" style="text-align:center;">Kết quả nhiệm vụ</h2>
         <div class="final-score"><span id="finalScore">0</span>/<span id="maxScore">0</span></div>
         <p id="resultMessage" class="desc" style="text-align:center;"></p>
-
+<p class="desc" style="text-align:center; margin-top: 4px;">
+  <strong>Nhiệm vụ tiếp theo:</strong> Dùng các nguyên tắc trên để đo kích thước ly/bình,
+  lựa chọn vật liệu và phác thảo bản thiết kế EcoWrap của nhóm.
+</p>
         <div class="principles">
           <div class="principle">Vừa khít</div>
           <div class="principle">Nhiều lớp</div>
@@ -779,9 +787,11 @@
       }
     ];
 
-    let score = 0;
-    let questionIndex = 0;
-    let answered = false;
+let score = 0;
+let questionIndex = 0;
+let answered = false;
+let locked = false;
+let hintUsed = false;
 
     const matchPoint = 10;
     const quizPoint = 10;
@@ -861,9 +871,9 @@
 
       const feedback = document.getElementById("matchFeedback");
       feedback.classList.add("show");
-      feedback.innerHTML =
-        `<strong>Nhiệm vụ 01 hoàn tất:</strong> Đúng ${correct}/${matchItems.length}. ` +
-        `EcoWrap hiệu quả hơn khi phối hợp đúng vai trò các lớp vật liệu.`;
+     feedback.innerHTML =
+  `<strong>Nhiệm vụ 01 hoàn tất:</strong> Đúng ${correct}/${matchItems.length}. ` +
+  `Mỗi vật liệu có vai trò riêng. EcoWrap hiệu quả hơn khi phối hợp nhiều lớp vật liệu đúng chức năng.`;
 
       setTimeout(() => {
         document.getElementById("matchArea").classList.add("hidden");
@@ -873,7 +883,9 @@
     }
 
     function renderQuestion() {
-      answered = false;
+  answered = false;
+  locked = false;
+  hintUsed = false;
 
       const q = questions[questionIndex];
 
@@ -899,9 +911,11 @@
       document.getElementById("bar").style.width = percent + "%";
     }
 
-    function chooseAnswer(index) {
-      if (answered) return;
-      answered = true;
+  function chooseAnswer(index) {
+  if (answered || locked) return;
+  answered = true;
+
+  document.getElementById("hintBtn").classList.add("hidden");
 
       const q = questions[questionIndex];
       const buttons = document.querySelectorAll(".option");
@@ -925,7 +939,57 @@
 
       document.getElementById("nextBtn").classList.remove("hidden");
     }
+function useHint() {
+  if (answered || locked || hintUsed) return;
 
+  hintUsed = true;
+  locked = true;
+
+  const q = questions[questionIndex];
+  const feedback = document.getElementById("quizFeedback");
+  const hintBtn = document.getElementById("hintBtn");
+  const buttons = document.querySelectorAll(".option");
+
+  buttons.forEach((btn) => {
+    btn.disabled = true;
+  });
+
+  hintBtn.disabled = true;
+  hintBtn.textContent = "Đang mở khóa... 5s";
+
+  feedback.classList.add("show");
+  feedback.innerHTML =
+    "<strong>GỢI Ý ĐÃ KÍCH HOẠT.</strong> Bạn tốn thêm 5 giây để nhận gợi ý.<br><br>" +
+    "<em>Gợi ý:</em> " + q.feedback +
+    "<br><br>Vui lòng chờ <span id='countdown'>5</span> giây để tiếp tục trả lời.";
+
+  let timeLeft = 5;
+
+  const timer = setInterval(() => {
+    timeLeft--;
+    const countdown = document.getElementById("countdown");
+
+    if (countdown) {
+      countdown.textContent = timeLeft;
+    }
+
+    hintBtn.textContent = "Đang mở khóa... " + timeLeft + "s";
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      locked = false;
+
+      buttons.forEach((btn) => {
+        btn.disabled = false;
+      });
+
+      hintBtn.textContent = "Đã dùng gợi ý";
+      feedback.innerHTML =
+        "<strong>TRY AGAIN.</strong> Hãy chọn đáp án phù hợp hơn dựa trên gợi ý vừa đọc.";
+    }
+  }, 1000);
+}
+    
     function nextQuestion() {
       questionIndex++;
 
@@ -938,6 +1002,9 @@
 
     function showResult() {
       document.getElementById("gameScreen").classList.add("hidden");
+      document.getElementById("hintBtn").classList.remove("hidden");
+document.getElementById("hintBtn").disabled = false;
+document.getElementById("hintBtn").textContent = "Gợi ý (-5 giây)";
       document.getElementById("resultScreen").classList.remove("hidden");
 
       document.getElementById("finalScore").textContent = score;
@@ -947,12 +1014,12 @@
       let message = "";
 
       if (percent >= 85) {
-        message = "Xuất sắc. Nhóm đã sẵn sàng bước vào thiết kế EcoWrap.";
-      } else if (percent >= 60) {
-        message = "Hoàn thành. Nhóm cần chú ý thêm vai trò vật liệu và lỗi hở mép khi thiết kế.";
-      } else {
-        message = "Cần ôn lại vai trò vật liệu và nguyên tắc thiết kế trước khi chế tạo.";
-      }
+  message = "Xuất sắc. Nhóm đã sẵn sàng bước vào hoạt động thiết kế EcoWrap.";
+} else if (percent >= 60) {
+  message = "Hoàn thành. Nhóm cần chú ý thêm vai trò vật liệu, lỗi hở mép và độ vừa khít khi thiết kế.";
+} else {
+  message = "Cần ôn lại vai trò vật liệu và nguyên tắc thiết kế trước khi phác thảo EcoWrap.";
+}
 
       document.getElementById("resultMessage").textContent = message;
       document.getElementById("bar").style.width = "100%";
