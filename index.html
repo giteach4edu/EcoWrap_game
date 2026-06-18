@@ -625,26 +625,19 @@
         <p id="resultMessage" class="desc" style="text-align:center;"></p>
 
 <p id="unlockMessage" class="desc" style="text-align:center; margin-top: 4px;"></p>
-  <strong>MÃ THIẾT KẾ ĐÃ MỞ KHÓA:</strong><br>
-  <span style="color:#ff9f1c; font-size: 1.15em;">
-    CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
-  </span>
-  <br><br>
-  Đại diện nhóm chạy lên bảng ghi mã thiết kế và giải thích nhanh một từ khóa
-  trước khi chuyển sang hoạt động thiết kế EcoWrap.
-</p>
-        <div class="principles">
-          <div class="principle">Vừa khít</div>
-          <div class="principle">Nhiều lớp</div>
-          <div class="principle">Hạn chế hở mép</div>
-          <div class="principle">Dễ tháo lắp</div>
-          <div class="principle">Vật liệu tái chế</div>
-          <div class="principle">An toàn</div>
-        </div>
+        
+      <div id="principlesBox" class="principles">
+  <div class="principle">Vừa khít</div>
+  <div class="principle">Nhiều lớp</div>
+  <div class="principle">Hạn chế hở mép</div>
+  <div class="principle">Dễ tháo lắp</div>
+  <div class="principle">Vật liệu tái chế</div>
+  <div class="principle">An toàn</div>
+</div>
 
         <div class="actions">
           <button class="btn" onclick="restartGame()">Thực hiện lại</button>
-          <button class="btn secondary" onclick="copyPrinciples()">Copy nguyên tắc</button>
+          <button id="copyBtn" class="btn secondary" onclick="copyPrinciples()">COPY NGUYÊN TẮC</button>
         </div>
 
         <div id="copyFeedback" class="feedback">
