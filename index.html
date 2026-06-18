@@ -816,9 +816,21 @@ let answered = false;
 let locked = false;
 let hintUsed = false;
 
-    const matchPoint = 10;
-    const quizPoint = 10;
-    const maxScore = matchItems.length * matchPoint + questions.length * quizPoint;
+const matchPoint = 1;
+const quizPoint = 1;
+const maxScore = matchItems.length + questions.length;
+
+const unlockRules = {
+  mission1: { need: 4, keyword: "CÁCH NHIỆT", unlocked: false, retryUsed: false },
+  mission2: { need: 2, keyword: "VỪA KHÍT", unlocked: false, retryUsed: false },
+  mission3: { need: 2, keyword: "NHIỀU LỚP", unlocked: false, retryUsed: false }
+};
+
+let mission1Score = 0;
+let mission2Score = 0;
+let mission3Score = 0;
+let locked = false;
+let hintUsed = false;
 
     function toggleGuide() {
       document.getElementById("guide").classList.toggle("show");
@@ -872,21 +884,92 @@ let hintUsed = false;
         grid.appendChild(row);
       });
     }
+function lockRetry(callback) {
+  locked = true;
+  let timeLeft = 5;
 
-    function checkMatch() {
-      let correct = 0;
+  const timer = setInterval(() => {
+    timeLeft--;
 
-      matchItems.forEach((item, index) => {
-        const select = document.getElementById("match-" + index);
+    const retryCountdown = document.getElementById("retryCountdown");
+    if (retryCountdown) {
+      retryCountdown.textContent = timeLeft;
+    }
 
-        if (select.value === item.answer) {
-          correct++;
-          select.style.borderColor = "rgba(0, 255, 200, 0.72)";
-          select.style.background = "rgba(0, 255, 200, 0.08)";
-        } else {
-          select.style.borderColor = "rgba(255, 59, 95, 0.75)";
-          select.style.background = "rgba(255, 59, 95, 0.08)";
-        }
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      locked = false;
+      callback();
+    }
+  }, 1000);
+}
+   function checkMatch() {
+  if (locked) return;
+
+  let correct = 0;
+
+  matchItems.forEach((item, index) => {
+    const select = document.getElementById("match-" + index);
+
+    if (select.value === item.answer) {
+      correct++;
+      select.style.borderColor = "rgba(0, 255, 200, 0.72)";
+      select.style.background = "rgba(0, 255, 200, 0.08)";
+    } else {
+      select.style.borderColor = "rgba(255, 59, 95, 0.75)";
+      select.style.background = "rgba(255, 59, 95, 0.08)";
+    }
+  });
+
+  mission1Score = correct;
+  score += correct * matchPoint;
+  document.getElementById("scoreText").textContent = score;
+
+  const feedback = document.getElementById("matchFeedback");
+  feedback.classList.add("show");
+
+  if (mission1Score >= unlockRules.mission1.need) {
+    unlockRules.mission1.unlocked = true;
+
+    feedback.innerHTML =
+      `<strong>MỞ KHÓA THÀNH CÔNG:</strong> Đúng ${correct}/5. ` +
+      `Từ khóa nhiệm vụ 01: <strong style="color:#ff9f1c;">CÁCH NHIỆT</strong>.<br><br>` +
+      `EcoWrap hiệu quả hơn khi biết lựa chọn vật liệu có khả năng hạn chế truyền nhiệt.`;
+
+    setTimeout(() => {
+      document.getElementById("matchArea").classList.add("hidden");
+      document.getElementById("quizArea").classList.remove("hidden");
+      renderQuestion();
+    }, 1800);
+
+  } else {
+    if (!unlockRules.mission1.retryUsed) {
+      unlockRules.mission1.retryUsed = true;
+
+      feedback.innerHTML =
+        `<strong>CHƯA MỞ KHÓA:</strong> Đúng ${correct}/5. ` +
+        `Cần đạt ít nhất 4/5 để mở khóa từ khóa nhiệm vụ 01.<br><br>` +
+        `Nhóm được làm lại 1 lần sau <span id="retryCountdown" style="color:#ff9f1c;">5</span> giây.`;
+
+      lockRetry(() => {
+        renderMatch();
+        feedback.innerHTML =
+          `<strong>TRY AGAIN.</strong> Hãy ghép lại vai trò của từng vật liệu để mở khóa từ khóa.`;
+      });
+
+    } else {
+      feedback.innerHTML =
+        `<strong>CHƯA ĐẠT:</strong> Đúng ${correct}/5. ` +
+        `Nhóm chưa mở khóa được từ khóa nhiệm vụ 01. Hãy ghi chú lại phần vật liệu cần xem lại.`;
+
+      setTimeout(() => {
+        document.getElementById("matchArea").classList.add("hidden");
+        document.getElementById("quizArea").classList.remove("hidden");
+        renderQuestion();
+      }, 2200);
+    }
+  }
+}
       });
 
       score += correct * matchPoint;
