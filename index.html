@@ -518,7 +518,7 @@
       <div id="startScreen">
         <div class="topline">
           <div class="tag"><span class="dot"></span> ECO TECH LINK • ONLINE</div>
-          <div class="score">MISSION: STEM/STEAM</div>
+          <div class="score">NHIỆM VỤ: STEM/STEAM</div>
         </div>
 
         <h1 data-text="ECOWRAP LAB"> THỬ THÁCH ECOWRAP </h1>
@@ -584,9 +584,10 @@
         </div>
 
         <div id="matchArea">
-          <p class="question">
-            Ghép từng vật liệu với vai trò phù hợp trong thiết kế EcoWrap.
-          </p>
+         <p class="question">
+  Mỗi vật liệu có một vai trò khác nhau trong việc hạn chế truyền nhiệt hoặc giúp sản phẩm dễ sử dụng.
+  Hãy ghép từng vật liệu với vai trò phù hợp trong thiết kế EcoWrap.
+</p>
 
           <div id="matchGrid" class="match-grid"></div>
 
@@ -616,28 +617,27 @@
 
       <div id="resultScreen" class="hidden">
         <div class="topline">
-          <div class="tag"><span class="dot"></span> MISSION COMPLETE</div>
+          <div class="tag"><span class="dot"></span> HOÀN THÀNH NHIỆM VỤ </div>
           <div class="score">ECOWRAP READY</div>
         </div>
 
         <h2 class="panel-title" style="text-align:center;">Kết quả nhiệm vụ</h2>
         <div class="final-score"><span id="finalScore">0</span>/<span id="maxScore">0</span></div>
+        
         <p id="resultMessage" class="desc" style="text-align:center;"></p>
 
 <p id="unlockMessage" class="desc" style="text-align:center; margin-top: 4px;"></p>
-        
-      <div id="principlesBox" class="principles">
+
+<div id="principlesBox" class="principles hidden">
+  <div class="principle">Cách nhiệt</div>
   <div class="principle">Vừa khít</div>
   <div class="principle">Nhiều lớp</div>
-  <div class="principle">Hạn chế hở mép</div>
-  <div class="principle">Dễ tháo lắp</div>
-  <div class="principle">Vật liệu tái chế</div>
   <div class="principle">An toàn</div>
 </div>
 
         <div class="actions">
           <button class="btn" onclick="restartGame()">Thực hiện lại</button>
-          <button id="copyBtn" class="btn secondary" onclick="copyPrinciples()">COPY NGUYÊN TẮC</button>
+          <button id="copyBtn" class="btn secondary hidden" onclick="copyPrinciples()">COPY NGUYÊN TẮC</button>
         </div>
 
         <div id="copyFeedback" class="feedback">
@@ -728,8 +728,8 @@
         answer: "Tạo form, giúp sản phẩm cứng cáp hơn"
       },
       {
-        material: "Dây chun / velcro / băng dính",
-        answer: "Cố định, giúp tháo lắp dễ hơn"
+        material: "Dây chun / băng dính gai / băng dính",
+        answer: "Cố định sản phẩm, giúp ôm sát ly/bình và tháo lắp dễ hơn"
       }
     ];
 
@@ -1010,7 +1010,7 @@ document.getElementById("hintBtn").textContent = "Gợi ý (-5 giây)";
       const feedback = document.getElementById("quizFeedback");
       feedback.classList.add("show");
       feedback.innerHTML =
-        (index === q.answer ? "<strong>ACCESS GRANTED.</strong> " : "<strong>ACCESS DENIED.</strong> ") +
+        (index === q.answer ? "<strong>CHÍNH XÁC.</strong> " : "<strong>CHƯA CHÍNH XÁC.</strong> ") +
         q.feedback;
 
       document.getElementById("nextBtn").classList.remove("hidden");
@@ -1061,7 +1061,7 @@ function useHint() {
 
       hintBtn.textContent = "Đã dùng gợi ý";
       feedback.innerHTML =
-        "<strong>TRY AGAIN.</strong> Hãy chọn đáp án phù hợp hơn dựa trên gợi ý vừa đọc.";
+        "<strong>THỬ LẠI.</strong> Hãy chọn đáp án phù hợp hơn dựa trên gợi ý vừa đọc.";
     }
   }, 1000);
 }
@@ -1076,7 +1076,7 @@ function useHint() {
       }
     }
 
-  function showResult() {
+function showResult() {
   document.getElementById("gameScreen").classList.add("hidden");
   document.getElementById("resultScreen").classList.remove("hidden");
 
@@ -1088,11 +1088,15 @@ function useHint() {
     unlockRules.mission2.unlocked &&
     unlockRules.mission3.unlocked;
 
+  const principlesBox = document.getElementById("principlesBox");
+  const copyBtn = document.getElementById("copyBtn");
+  const unlockMessage = document.getElementById("unlockMessage");
+
   if (allUnlocked) {
     document.getElementById("resultMessage").textContent =
       "Xuất sắc. Nhóm đã mở khóa đủ mã thiết kế EcoWrap.";
 
-    document.getElementById("unlockMessage").innerHTML =
+    unlockMessage.innerHTML =
       `<strong>MÃ THIẾT KẾ ĐÃ MỞ KHÓA:</strong><br>
       <span style="color:#ff9f1c; font-size: 1.15em;">
         CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
@@ -1100,17 +1104,24 @@ function useHint() {
       <br><br>
       Đại diện nhóm chạy lên bảng ghi mã thiết kế và giải thích nhanh một từ khóa
       trước khi chuyển sang hoạt động thiết kế EcoWrap.`;
+
+    principlesBox.classList.remove("hidden");
+    copyBtn.classList.remove("hidden");
+
   } else {
     document.getElementById("resultMessage").textContent =
       "Chưa mở khóa đủ mã thiết kế EcoWrap.";
 
-    document.getElementById("unlockMessage").innerHTML =
+    unlockMessage.innerHTML =
       `<strong>MÃ THIẾT KẾ CHƯA HOÀN THÀNH:</strong><br>
       <span style="color:#ff3b5f; font-size: 1.15em;">
         Chưa đủ điều kiện mở khóa từ khóa AN TOÀN
       </span>
       <br><br>
       Nhóm cần thực hiện lại nhiệm vụ chưa đạt để mở khóa đầy đủ mã thiết kế.`;
+
+    principlesBox.classList.add("hidden");
+    copyBtn.classList.add("hidden");
   }
 
   document.getElementById("bar").style.width = "100%";
