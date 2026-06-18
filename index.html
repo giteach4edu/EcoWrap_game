@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="vi">
 <head>
@@ -86,19 +87,19 @@
       100% { top: 105%; opacity: 0.25; }
     }
 
-   .wrap {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 6px;
-}
+    .wrap {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
 
     .card {
-  width: min(1280px, 98vw);
-  max-height: 96vh;
-  overflow-y: auto;
-  padding: clamp(18px, 3vw, 32px);
+      width: min(880px, 94vw);
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: clamp(18px, 4.2vw, 34px);
       border-radius: 18px;
       background: var(--glass);
       border: 1px solid var(--stroke);
@@ -172,7 +173,7 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(34px, 6vw, 64px);
+      font-size: clamp(34px, 7vw, 68px);
       letter-spacing: 4px;
       color: var(--neon);
       text-shadow:
@@ -238,14 +239,14 @@
       z-index: 1;
     }
 
-   .mission-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  margin: 20px 0;
-  position: relative;
-  z-index: 1;
-}
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+      position: relative;
+      z-index: 1;
+    }
 
     .mission {
       padding: 14px;
@@ -463,7 +464,7 @@
 
     .principles {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
       margin: 20px 0;
     }
@@ -517,7 +518,7 @@
       <div id="startScreen">
         <div class="topline">
           <div class="tag"><span class="dot"></span> ECO TECH LINK • ONLINE</div>
-          <div class="score">NHIỆM VỤ: STEM/STEAM</div>
+          <div class="score">MISSION: STEM/STEAM</div>
         </div>
 
         <h1 data-text="ECOWRAP LAB"> THỬ THÁCH ECOWRAP </h1>
@@ -546,92 +547,34 @@
 
   <div class="mission">
     <strong>NHIỆM VỤ 03</strong>
-    Chọn cấu tạo tối ưu cho EcoWrap.<br><br>
+    Chọn cấu tạo tối ưu trước khi thiết kế thật.<br><br>
     <span style="color:#ff9f1c;">Mở khóa: ????</span>
   </div>
 
   <div class="mission">
-    <strong>NHIỆM VỤ 04</strong>
-    Kiểm định an toàn sản phẩm trước khi sử dụng.<br><br>
+    <strong>MÃ HOÀN THÀNH</strong>
+    Hoàn thành toàn bộ thử thách để nhận từ khóa cuối.<br><br>
     <span style="color:#ff9f1c;">Mở khóa: ????</span>
   </div>
 </div>
+</div>
 
 <p class="desc" style="text-align:center; margin-top: 8px;">
-  <strong>Mã thiết kế:</strong> Hoàn thành 4 nhiệm vụ để mở khóa đủ
-  <span style="color:#ff9f1c;">4 mảnh ghép thiết kế EcoWrap</span>.
+  <strong>Từ khóa cuối:</strong> Khi hoàn thành toàn bộ thử thách, nhóm sẽ mở khóa thêm
+  <span style="color:#ff9f1c;">????</span>.
 </p>
 
         <div class="actions">
-          <button class="btn" onclick="showPasswordBox()">Truy cập nhiệm vụ</button>
-         <button class="btn secondary" onclick="showGuideScreen()">Hướng dẫn nhanh</button>
+          <button class="btn" onclick="startGame()">Truy cập nhiệm vụ</button>
+          <button class="btn secondary" onclick="toggleGuide()">Hướng dẫn nhanh</button>
         </div>
 
-
-      </div>
-<div id="guideScreen" class="hidden">
-  <div class="topline">
-    <div class="tag"><span class="dot"></span> GAME GUIDE</div>
-    <div class="score">QUICK GUIDE</div>
-  </div>
-
-  <h2 class="panel-title">Hướng dẫn nhanh</h2>
-
-  <p class="desc">
-    Trò chơi gồm <strong>4 nhiệm vụ</strong>. Mỗi nhiệm vụ hoàn thành sẽ mở khóa
-    <strong>1 mảnh ghép thiết kế EcoWrap</strong>. Hoàn thành đủ 4 nhiệm vụ, nhóm sẽ nhận được mã thiết kế hoàn chỉnh.
-  </p>
-
-  <div class="mission-grid">
-    <div class="mission">
-      <strong>NHIỆM VỤ 01</strong>
-      Phân tích vật liệu và xác định vai trò từng lớp.<br><br>
-      Đạt từ <span style="color:#ff9f1c;">3/4 ý đúng</span> để mở khóa:
-      <span style="color:#ff9f1c;">CÁCH NHIỆT</span>.
-    </div>
-
-    <div class="mission">
-      <strong>NHIỆM VỤ 02</strong>
-      Nhận diện lỗi thiết kế khiến EcoWrap giữ nhiệt kém.<br><br>
-      Đạt từ <span style="color:#ff9f1c;">2/3 ý đúng</span> để mở khóa:
-      <span style="color:#ff9f1c;">VỪA KHÍT</span>.
-    </div>
-
-    <div class="mission">
-      <strong>NHIỆM VỤ 03</strong>
-      Chọn cấu tạo tối ưu cho EcoWrap.<br><br>
-      Đạt từ <span style="color:#ff9f1c;">2/2 ý đúng</span> để mở khóa:
-      <span style="color:#ff9f1c;">NHIỀU LỚP</span>.
-    </div>
-
-    <div class="mission">
-      <strong>NHIỆM VỤ 04</strong>
-      Kiểm định an toàn sản phẩm trước khi sử dụng.<br><br>
-      Đạt từ <span style="color:#ff9f1c;">1/1 ý đúng</span> để mở khóa:
-      <span style="color:#ff9f1c;">AN TOÀN</span>.
-    </div>
-  </div>
-
-  <p class="desc">
-    <strong>Quyền gợi ý:</strong> Ở phần câu hỏi trắc nghiệm, nhóm có thể bấm nút
-    <span style="color:#ff9f1c;">“Gợi ý (-5 giây)”</span> khi gặp khó khăn.
-    Khi dùng gợi ý, hệ thống sẽ tạm khóa câu trả lời trong 5 giây để nhóm đọc gợi ý và suy nghĩ lại.
-  </p>
-
-  <p class="desc">
-    <strong>Quyền làm lại:</strong> Nếu chưa đạt điểm mở khóa ở một nhiệm vụ,
-    nhóm được làm lại <strong>1 lần</strong>. Trước khi làm lại, hệ thống sẽ tạm dừng 5 giây.
-  </p>
-
-  <p class="desc">
-    <strong>Mã thiết kế EcoWrap:</strong> CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN.
-    Bộ mã này là căn cứ để nhóm đo kích thước, chọn vật liệu và phác thảo sản phẩm.
-  </p>
-
-  <div class="actions">
-    <button class="btn" onclick="backToStart()">Quay lại</button>
-  </div>
+       <div id="guide" class="feedback">
+  Hoàn thành 3 nhiệm vụ: phân tích vật liệu, nhận diện lỗi thiết kế và chọn phương án tối ưu.
+  Sau trò chơi, nhóm ghép 4 từ khóa thành một câu khẩu lệnh rồi chạy lên đọc/ghi lên bảng để nhận “quyền thiết kế”.
 </div>
+      </div>
+
       <div id="gameScreen" class="hidden">
         <div class="topline">
           <div>
@@ -642,10 +585,9 @@
         </div>
 
         <div id="matchArea">
-         <p class="question">
-  Mỗi vật liệu có một vai trò khác nhau trong việc hạn chế truyền nhiệt hoặc giúp sản phẩm dễ sử dụng.
-  Hãy ghép từng vật liệu với vai trò phù hợp trong thiết kế EcoWrap. Hoàn thành tối thiểu 3/4 câu.
-</p>
+          <p class="question">
+            Ghép từng vật liệu với vai trò phù hợp trong thiết kế EcoWrap.
+          </p>
 
           <div id="matchGrid" class="match-grid"></div>
 
@@ -675,27 +617,36 @@
 
       <div id="resultScreen" class="hidden">
         <div class="topline">
-          <div class="tag"><span class="dot"></span> HOÀN THÀNH NHIỆM VỤ </div>
+          <div class="tag"><span class="dot"></span> MISSION COMPLETE</div>
           <div class="score">ECOWRAP READY</div>
         </div>
 
         <h2 class="panel-title" style="text-align:center;">Kết quả nhiệm vụ</h2>
         <div class="final-score"><span id="finalScore">0</span>/<span id="maxScore">0</span></div>
-        
         <p id="resultMessage" class="desc" style="text-align:center;"></p>
+<p id="resultMessage" class="desc" style="text-align:center;"></p>
 
-<p id="unlockMessage" class="desc" style="text-align:center; margin-top: 4px;"></p>
-
-<div id="principlesBox" class="principles hidden">
-  <div class="principle">Cách nhiệt</div>
-  <div class="principle">Vừa khít</div>
-  <div class="principle">Nhiều lớp</div>
-  <div class="principle">An toàn</div>
-</div>
+<p class="desc" style="text-align:center; margin-top: 4px;">
+  <strong>MÃ THIẾT KẾ ĐÃ MỞ KHÓA:</strong><br>
+  <span style="color:#ff9f1c; font-size: 1.15em;">
+    CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
+  </span>
+  <br><br>
+  Đại diện nhóm chạy lên bảng ghi mã thiết kế và giải thích nhanh một từ khóa
+  trước khi chuyển sang hoạt động thiết kế EcoWrap.
+</p>
+        <div class="principles">
+          <div class="principle">Vừa khít</div>
+          <div class="principle">Nhiều lớp</div>
+          <div class="principle">Hạn chế hở mép</div>
+          <div class="principle">Dễ tháo lắp</div>
+          <div class="principle">Vật liệu tái chế</div>
+          <div class="principle">An toàn</div>
+        </div>
 
         <div class="actions">
           <button class="btn" onclick="restartGame()">Thực hiện lại</button>
-          <button id="copyBtn" class="btn secondary hidden" onclick="copyPrinciples()">COPY NGUYÊN TẮC</button>
+          <button class="btn secondary" onclick="copyPrinciples()">Copy nguyên tắc</button>
         </div>
 
         <div id="copyFeedback" class="feedback">
@@ -764,7 +715,8 @@
       "Hạn chế truyền nhiệt nhờ có các túi khí nhỏ",
       "Góp phần phản xạ bức xạ nhiệt",
       "Tăng độ bền, tạo lớp ngoài và tăng thẩm mỹ",
-      "Cố định sản phẩm, giúp ôm sát ly/bình và dễ tháo lắp"
+      "Tạo form, giúp sản phẩm cứng cáp hơn",
+      "Cố định, giúp tháo lắp dễ hơn"
     ];
 
     const matchItems = [
@@ -781,14 +733,17 @@
         answer: "Tăng độ bền, tạo lớp ngoài và tăng thẩm mỹ"
       },
       {
-        material: "Dây chun / băng dán gai / băng dính",
-        answer: "Cố định sản phẩm, giúp ôm sát ly/bình và dễ tháo lắp"
+        material: "Bìa carton",
+        answer: "Tạo form, giúp sản phẩm cứng cáp hơn"
+      },
+      {
+        material: "Dây chun / velcro / băng dính",
+        answer: "Cố định, giúp tháo lắp dễ hơn"
       }
     ];
 
     const questions = [
       {
-        mission: "mission2",
         round: "Nhiệm vụ 02",
         title: "Nhận diện lỗi thiết kế",
         question: "Vỏ bọc quá rộng, không ôm sát ly/bình sẽ gây vấn đề gì?",
@@ -799,185 +754,98 @@
           "Không ảnh hưởng gì đến sản phẩm"
         ],
         answer: 1,
-        feedback: "Vỏ bọc quá rộng làm mép hở nhiều, không khí nóng dễ tiếp xúc với thành ly/bình. Vì vậy, EcoWrap cần vừa khít."
+        feedback: "Vỏ bọc quá rộng làm mép hở nhiều, không khí nóng dễ tiếp xúc với thành ly/bình."
       },
       {
-        mission: "mission2",
         round: "Nhiệm vụ 02",
         title: "Nhận diện lỗi thiết kế",
-        question: "Nếu mép EcoWrap bị hở nhiều, điều gì có thể xảy ra?",
+        question: "Nếu không có lớp xốp hoặc lớp cách nhiệt, điều gì có thể xảy ra?",
         options: [
-          "Không khí bên ngoài dễ trao đổi với ly/bình, làm giảm hiệu quả giữ lạnh",
-          "Sản phẩm chắc chắn hơn",
-          "Ly/bình tự lạnh hơn",
-          "Không ảnh hưởng gì đến quá trình truyền nhiệt"
+          "Nhiệt truyền vào nhanh hơn",
+          "Ly tự giữ lạnh lâu hơn",
+          "Không cần thử nghiệm",
+          "Sản phẩm chắc chắn hơn"
         ],
         answer: 0,
-        feedback: "Mép hở nhiều làm không khí nóng dễ tiếp xúc với thành ly/bình. Thiết kế vừa khít giúp hạn chế trao đổi nhiệt với môi trường."
+        feedback: "Lớp xốp có các khoảng khí nhỏ, giúp hạn chế quá trình truyền nhiệt vào ly/bình."
       },
       {
-        mission: "mission2",
         round: "Nhiệm vụ 02",
         title: "Nhận diện lỗi thiết kế",
-        question: "Thiết kế nào phù hợp hơn với nguyên tắc VỪA KHÍT?",
+        question: "Dùng vật liệu bẩn hoặc có cạnh sắc là lỗi liên quan đến tiêu chí nào?",
         options: [
-          "Bọc lỏng, dễ tuột khỏi ly/bình",
-          "Ôm sát ly/bình, hạn chế khe hở nhưng vẫn dễ tháo lắp",
-          "Chỉ che một phần rất nhỏ của ly/bình",
-          "Dán cố định vĩnh viễn vào ly/bình"
+          "Màu sắc",
+          "An toàn và vệ sinh",
+          "Cách vẽ biểu đồ",
+          "Tên nhóm"
         ],
         answer: 1,
-        feedback: "Vừa khít nghĩa là sản phẩm ôm sát ly/bình, hạn chế khe hở nhưng vẫn dễ tháo lắp và sử dụng."
+        feedback: "EcoWrap phải an toàn, sạch và không gây nguy hiểm khi cầm nắm hoặc tháo lắp."
       },
       {
-        mission: "mission3",
         round: "Nhiệm vụ 03",
-        title: "Chọn cấu tạo tối ưu",
-        question: "Phương án nào hợp lí nhất để thiết kế EcoWrap theo nguyên tắc NHIỀU LỚP?",
+        title: "Lựa chọn phương án tối ưu",
+        question: "Phương án nào hợp lí nhất để thiết kế EcoWrap?",
         options: [
           "Một lớp giấy mỏng quấn quanh ly",
-          "Xốp hơi + vỏ snack tráng bạc/màng nhôm + lớp ngoài bằng vải/nỉ",
+          "Xốp hơi + vỏ snack tráng bạc + lớp ngoài bằng vải/carton",
           "Chỉ dùng khăn giấy",
           "Chỉ dùng băng keo trong"
         ],
         answer: 1,
-        feedback: "Cấu tạo nhiều lớp giúp phối hợp vai trò của các vật liệu: lớp cách nhiệt, lớp phản xạ nhiệt và lớp ngoài giúp sản phẩm bền, đẹp hơn."
+        feedback: "Cấu tạo nhiều lớp giúp hạn chế các hình thức truyền nhiệt tốt hơn và tận dụng vật liệu tái chế."
       },
       {
-        mission: "mission3",
         round: "Nhiệm vụ 03",
-        title: "Chọn cấu tạo tối ưu",
-        question: "Vì sao EcoWrap nên phối hợp nhiều lớp vật liệu?",
+        title: "Lựa chọn phương án tối ưu",
+        question: "Nguyên tắc nào cần ghi vào phiếu thiết kế sau trò chơi?",
         options: [
-          "Để sản phẩm càng nặng càng tốt",
-          "Để vừa hạn chế dẫn nhiệt, vừa phản xạ bức xạ nhiệt và tăng độ bền",
-          "Để không cần quan tâm đến kích thước ly/bình",
-          "Để dùng thật nhiều vật liệu mà không cần giải thích"
+          "Càng dày càng tốt, không cần thử nghiệm",
+          "Vừa khít, nhiều lớp, hạn chế hở mép, dễ tháo lắp, vật liệu tái chế, an toàn",
+          "Chỉ cần trang trí đẹp",
+          "Chỉ cần dùng thật nhiều băng keo"
         ],
         answer: 1,
-        feedback: "Nhiều lớp giúp EcoWrap có cơ sở khoa học hơn: lớp xốp hạn chế dẫn nhiệt, lớp bạc phản xạ bức xạ nhiệt, lớp ngoài giúp bền và đẹp."
-      },
-      {
-        mission: "mission4",
-        round: "Nhiệm vụ 04",
-        title: "Trạm kiểm định an toàn",
-        question: "Yếu tố nào thể hiện nguyên tắc AN TOÀN khi thiết kế EcoWrap?",
-        options: [
-          "Dùng vật liệu sạch, mép cắt gọn, không sắc nhọn và không ảnh hưởng đến nước uống",
-          "Dùng vật liệu bất kì miễn là nhìn đẹp",
-          "Dán EcoWrap vào miệng ly để không bị rơi",
-          "Dùng càng nhiều keo càng tốt, không cần kiểm tra"
-        ],
-        answer: 0,
-        feedback: "An toàn nghĩa là vật liệu phải sạch, khô, mép cắt gọn, không sắc nhọn, dễ sử dụng và không ảnh hưởng đến ly/bình nước."
+        feedback: "Đây là bộ nguyên tắc giúp EcoWrap có cơ sở khoa học, dễ dùng và phù hợp nhiệm vụ STEAM."
       }
     ];
 
-    let score = 0;
-    let questionIndex = 0;
-    let answered = false;
-    let locked = false;
-    let hintUsed = false;
+let score = 0;
+let questionIndex = 0;
+let answered = false;
+let locked = false;
+let hintUsed = false;
 
-    const GAME_PASSWORD = "ECO123";
-    const matchPoint = 1;
-    const quizPoint = 1;
-    const maxScore = matchItems.length + questions.length;
+const matchPoint = 1;
+const quizPoint = 1;
+const maxScore = matchItems.length + questions.length;
 
-    const unlockRules = {
-      mission1: { need: 3, keyword: "CÁCH NHIỆT", unlocked: false, retryUsed: false },
-      mission2: { need: 2, keyword: "VỪA KHÍT", unlocked: false, retryUsed: false },
-      mission3: { need: 2, keyword: "NHIỀU LỚP", unlocked: false, retryUsed: false },
-      mission4: { need: 1, keyword: "AN TOÀN", unlocked: false, retryUsed: false }
-    };
+const unlockRules = {
+  mission1: { need: 4, keyword: "CÁCH NHIỆT", unlocked: false, retryUsed: false },
+  mission2: { need: 2, keyword: "VỪA KHÍT", unlocked: false, retryUsed: false },
+  mission3: { need: 2, keyword: "NHIỀU LỚP", unlocked: false, retryUsed: false }
+};
 
-    const missionStartIndex = {
-      mission2: 0,
-      mission3: 3,
-      mission4: 5
-    };
+let mission1Score = 0;
+let mission2Score = 0;
+let mission3Score = 0;
+let locked = false;
+let hintUsed = false;
 
-    let mission1Score = 0;
-    let mission2Score = 0;
-    let mission3Score = 0;
-    let mission4Score = 0;
-
-    function resetGameState() {
-      score = 0;
-      questionIndex = 0;
-      answered = false;
-      locked = false;
-      hintUsed = false;
-
-      mission1Score = 0;
-      mission2Score = 0;
-      mission3Score = 0;
-      mission4Score = 0;
-
-      Object.keys(unlockRules).forEach((key) => {
-        unlockRules[key].unlocked = false;
-        unlockRules[key].retryUsed = false;
-      });
-
-      document.getElementById("scoreText").textContent = score;
-      document.getElementById("bar").style.width = "0%";
-      document.getElementById("matchFeedback").classList.remove("show");
-      document.getElementById("matchFeedback").innerHTML = "";
-      document.getElementById("quizFeedback").classList.remove("show");
-      document.getElementById("quizFeedback").innerHTML = "";
-      document.getElementById("copyFeedback").classList.remove("show");
-      document.getElementById("copyBtn").classList.add("hidden");
-      document.getElementById("principlesBox").classList.add("hidden");
-    }
-
-    function showGuideScreen() {
-      document.getElementById("startScreen").classList.add("hidden");
-      document.getElementById("gameScreen").classList.add("hidden");
-      document.getElementById("resultScreen").classList.add("hidden");
-      document.getElementById("guideScreen").classList.remove("hidden");
-    }
-
-    function backToStart() {
-      document.getElementById("guideScreen").classList.add("hidden");
-      document.getElementById("startScreen").classList.remove("hidden");
-    }
-
-    function showPasswordBox() {
-      document.getElementById("passwordBox").classList.add("show");
-      document.getElementById("passwordFeedback").textContent = "";
-      document.getElementById("passwordInput").value = "";
-
-      setTimeout(() => {
-        document.getElementById("passwordInput").focus();
-      }, 100);
-    }
-
-    function hidePasswordBox() {
-      document.getElementById("passwordBox").classList.remove("show");
-      document.getElementById("passwordFeedback").textContent = "";
-      document.getElementById("passwordInput").value = "";
-    }
-
-    function checkPassword() {
-      const input = document.getElementById("passwordInput").value.trim();
-
-      if (input.toUpperCase() === GAME_PASSWORD) {
-        hidePasswordBox();
-        startGame();
-      } else {
-        document.getElementById("passwordFeedback").textContent =
-          "Mật khẩu chưa đúng. Hãy nghe giáo viên cung cấp mã nhiệm vụ.";
-      }
+    function toggleGuide() {
+      document.getElementById("guide").classList.toggle("show");
     }
 
     function startGame() {
-      resetGameState();
+      score = 0;
+      questionIndex = 0;
+      answered = false;
 
       document.getElementById("startScreen").classList.add("hidden");
-      document.getElementById("guideScreen").classList.add("hidden");
       document.getElementById("resultScreen").classList.add("hidden");
       document.getElementById("gameScreen").classList.remove("hidden");
 
+      document.getElementById("scoreText").textContent = score;
       document.getElementById("matchArea").classList.remove("hidden");
       document.getElementById("quizArea").classList.add("hidden");
 
@@ -1016,98 +884,114 @@
         grid.appendChild(row);
       });
     }
+function lockRetry(callback) {
+  locked = true;
+  let timeLeft = 5;
 
-    function lockRetry(callback) {
-      locked = true;
-      let timeLeft = 5;
+  const timer = setInterval(() => {
+    timeLeft--;
 
-      const timer = setInterval(() => {
-        timeLeft--;
-
-        const retryCountdown = document.getElementById("retryCountdown");
-        if (retryCountdown) {
-          retryCountdown.textContent = timeLeft;
-        }
-
-        if (timeLeft <= 0) {
-          clearInterval(timer);
-          locked = false;
-          callback();
-        }
-      }, 1000);
+    const retryCountdown = document.getElementById("retryCountdown");
+    if (retryCountdown) {
+      retryCountdown.textContent = timeLeft;
     }
 
-    function checkMatch() {
-      if (locked) return;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      locked = false;
+      callback();
+    }
+  }, 1000);
+}
+   function checkMatch() {
+  if (locked) return;
 
-      let correct = 0;
+  let correct = 0;
 
-      matchItems.forEach((item, index) => {
-        const select = document.getElementById("match-" + index);
+  matchItems.forEach((item, index) => {
+    const select = document.getElementById("match-" + index);
 
-        if (select.value === item.answer) {
-          correct++;
-          select.style.borderColor = "rgba(0, 255, 200, 0.72)";
-          select.style.background = "rgba(0, 255, 200, 0.08)";
-        } else {
-          select.style.borderColor = "rgba(255, 59, 95, 0.75)";
-          select.style.background = "rgba(255, 59, 95, 0.08)";
-        }
+    if (select.value === item.answer) {
+      correct++;
+      select.style.borderColor = "rgba(0, 255, 200, 0.72)";
+      select.style.background = "rgba(0, 255, 200, 0.08)";
+    } else {
+      select.style.borderColor = "rgba(255, 59, 95, 0.75)";
+      select.style.background = "rgba(255, 59, 95, 0.08)";
+    }
+  });
+
+  mission1Score = correct;
+  score += correct * matchPoint;
+  document.getElementById("scoreText").textContent = score;
+
+  const feedback = document.getElementById("matchFeedback");
+  feedback.classList.add("show");
+
+  if (mission1Score >= unlockRules.mission1.need) {
+    unlockRules.mission1.unlocked = true;
+
+    feedback.innerHTML =
+      `<strong>MỞ KHÓA THÀNH CÔNG:</strong> Đúng ${correct}/5. ` +
+      `Từ khóa nhiệm vụ 01: <strong style="color:#ff9f1c;">CÁCH NHIỆT</strong>.<br><br>` +
+      `EcoWrap hiệu quả hơn khi biết lựa chọn vật liệu có khả năng hạn chế truyền nhiệt.`;
+
+    setTimeout(() => {
+      document.getElementById("matchArea").classList.add("hidden");
+      document.getElementById("quizArea").classList.remove("hidden");
+      renderQuestion();
+    }, 1800);
+
+  } else {
+    if (!unlockRules.mission1.retryUsed) {
+      unlockRules.mission1.retryUsed = true;
+
+      feedback.innerHTML =
+        `<strong>CHƯA MỞ KHÓA:</strong> Đúng ${correct}/5. ` +
+        `Cần đạt ít nhất 4/5 để mở khóa từ khóa nhiệm vụ 01.<br><br>` +
+        `Nhóm được làm lại 1 lần sau <span id="retryCountdown" style="color:#ff9f1c;">5</span> giây.`;
+
+      lockRetry(() => {
+        renderMatch();
+        feedback.innerHTML =
+          `<strong>TRY AGAIN.</strong> Hãy ghép lại vai trò của từng vật liệu để mở khóa từ khóa.`;
       });
 
-      score -= mission1Score * matchPoint;
-      mission1Score = correct;
-      score += mission1Score * matchPoint;
+    } else {
+      feedback.innerHTML =
+        `<strong>CHƯA ĐẠT:</strong> Đúng ${correct}/5. ` +
+        `Nhóm chưa mở khóa được từ khóa nhiệm vụ 01. Hãy ghi chú lại phần vật liệu cần xem lại.`;
+
+      setTimeout(() => {
+        document.getElementById("matchArea").classList.add("hidden");
+        document.getElementById("quizArea").classList.remove("hidden");
+        renderQuestion();
+      }, 2200);
+    }
+  }
+}
+      });
+
+      score += correct * matchPoint;
       document.getElementById("scoreText").textContent = score;
 
       const feedback = document.getElementById("matchFeedback");
       feedback.classList.add("show");
+     feedback.innerHTML =
+  `<strong>Nhiệm vụ 01 hoàn tất:</strong> Đúng ${correct}/${matchItems.length}. ` +
+  `Mỗi vật liệu có vai trò riêng. EcoWrap hiệu quả hơn khi phối hợp nhiều lớp vật liệu đúng chức năng.`;
 
-      if (mission1Score >= unlockRules.mission1.need) {
-        unlockRules.mission1.unlocked = true;
-
-        feedback.innerHTML =
-          `<strong>MỞ KHÓA THÀNH CÔNG:</strong> Đúng ${correct}/${matchItems.length}. ` +
-          `Từ khóa nhiệm vụ 01: <strong style="color:#ff9f1c;">${unlockRules.mission1.keyword}</strong>.<br><br>` +
-          `EcoWrap hiệu quả hơn khi biết lựa chọn vật liệu có khả năng hạn chế truyền nhiệt.`;
-
-        setTimeout(() => {
-          document.getElementById("matchArea").classList.add("hidden");
-          document.getElementById("quizArea").classList.remove("hidden");
-          renderQuestion();
-        }, 1800);
-
-      } else {
-        if (!unlockRules.mission1.retryUsed) {
-          unlockRules.mission1.retryUsed = true;
-
-          feedback.innerHTML =
-            `<strong>CHƯA MỞ KHÓA:</strong> Đúng ${correct}/${matchItems.length}. ` +
-            `Cần đạt ít nhất ${unlockRules.mission1.need}/${matchItems.length} để mở khóa từ khóa nhiệm vụ 01.<br><br>` +
-            `Nhóm được làm lại 1 lần sau <span id="retryCountdown" style="color:#ff9f1c;">5</span> giây.`;
-
-          lockRetry(() => {
-            renderMatch();
-            feedback.innerHTML =
-              `<strong>THỬ LẠI.</strong> Hãy ghép lại vai trò của từng vật liệu để mở khóa từ khóa.`;
-          });
-
-        } else {
-          feedback.innerHTML =
-            `<strong>CHƯA ĐẠT:</strong> Đúng ${correct}/${matchItems.length}. ` +
-            `Nhóm chưa mở khóa được từ khóa nhiệm vụ 01. Hãy bấm “Thực hiện lại” để chơi lại từ đầu.`;
-
-          setTimeout(() => {
-            showResult();
-          }, 2200);
-        }
-      }
+      setTimeout(() => {
+        document.getElementById("matchArea").classList.add("hidden");
+        document.getElementById("quizArea").classList.remove("hidden");
+        renderQuestion();
+      }, 1500);
     }
 
     function renderQuestion() {
-      answered = false;
-      locked = false;
-      hintUsed = false;
+  answered = false;
+  locked = false;
+  hintUsed = false;
 
       const q = questions[questionIndex];
 
@@ -1117,9 +1001,6 @@
       document.getElementById("quizFeedback").classList.remove("show");
       document.getElementById("quizFeedback").innerHTML = "";
       document.getElementById("nextBtn").classList.add("hidden");
-      document.getElementById("hintBtn").classList.remove("hidden");
-      document.getElementById("hintBtn").disabled = false;
-      document.getElementById("hintBtn").textContent = "Gợi ý (-5 giây)";
 
       const options = document.getElementById("options");
       options.innerHTML = "";
@@ -1136,11 +1017,11 @@
       document.getElementById("bar").style.width = percent + "%";
     }
 
-    function chooseAnswer(index) {
-      if (answered || locked) return;
-      answered = true;
+  function chooseAnswer(index) {
+  if (answered || locked) return;
+  answered = true;
 
-      document.getElementById("hintBtn").classList.add("hidden");
+  document.getElementById("hintBtn").classList.add("hidden");
 
       const q = questions[questionIndex];
       const buttons = document.querySelectorAll(".option");
@@ -1153,228 +1034,113 @@
 
       if (index === q.answer) {
         score += quizPoint;
-
-        if (q.mission === "mission2") mission2Score++;
-        if (q.mission === "mission3") mission3Score++;
-        if (q.mission === "mission4") mission4Score++;
-
         document.getElementById("scoreText").textContent = score;
       }
 
       const feedback = document.getElementById("quizFeedback");
       feedback.classList.add("show");
       feedback.innerHTML =
-        (index === q.answer ? "<strong>CHÍNH XÁC.</strong> " : "<strong>CHƯA CHÍNH XÁC.</strong> ") +
+        (index === q.answer ? "<strong>ACCESS GRANTED.</strong> " : "<strong>ACCESS DENIED.</strong> ") +
         q.feedback;
 
       document.getElementById("nextBtn").classList.remove("hidden");
     }
+function useHint() {
+  if (answered || locked || hintUsed) return;
 
-    function useHint() {
-      if (answered || locked || hintUsed) return;
+  hintUsed = true;
+  locked = true;
 
-      hintUsed = true;
-      locked = true;
+  const q = questions[questionIndex];
+  const feedback = document.getElementById("quizFeedback");
+  const hintBtn = document.getElementById("hintBtn");
+  const buttons = document.querySelectorAll(".option");
 
-      const q = questions[questionIndex];
-      const feedback = document.getElementById("quizFeedback");
-      const hintBtn = document.getElementById("hintBtn");
-      const buttons = document.querySelectorAll(".option");
+  buttons.forEach((btn) => {
+    btn.disabled = true;
+  });
+
+  hintBtn.disabled = true;
+  hintBtn.textContent = "Đang mở khóa... 5s";
+
+  feedback.classList.add("show");
+  feedback.innerHTML =
+    "<strong>GỢI Ý ĐÃ KÍCH HOẠT.</strong> Bạn tốn thêm 5 giây để nhận gợi ý.<br><br>" +
+    "<em>Gợi ý:</em> " + q.feedback +
+    "<br><br>Vui lòng chờ <span id='countdown'>5</span> giây để tiếp tục trả lời.";
+
+  let timeLeft = 5;
+
+  const timer = setInterval(() => {
+    timeLeft--;
+    const countdown = document.getElementById("countdown");
+
+    if (countdown) {
+      countdown.textContent = timeLeft;
+    }
+
+    hintBtn.textContent = "Đang mở khóa... " + timeLeft + "s";
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      locked = false;
 
       buttons.forEach((btn) => {
-        btn.disabled = true;
+        btn.disabled = false;
       });
 
-      hintBtn.disabled = true;
-      hintBtn.textContent = "Đang mở khóa... 5s";
-
-      feedback.classList.add("show");
+      hintBtn.textContent = "Đã dùng gợi ý";
       feedback.innerHTML =
-        "<strong>GỢI Ý ĐÃ KÍCH HOẠT.</strong> Bạn tốn thêm 5 giây để nhận gợi ý.<br><br>" +
-        "<em>Gợi ý:</em> " + q.feedback +
-        "<br><br>Vui lòng chờ <span id='countdown'>5</span> giây để tiếp tục trả lời.";
-
-      let timeLeft = 5;
-
-      const timer = setInterval(() => {
-        timeLeft--;
-        const countdown = document.getElementById("countdown");
-
-        if (countdown) {
-          countdown.textContent = timeLeft;
-        }
-
-        hintBtn.textContent = "Đang mở khóa... " + timeLeft + "s";
-
-        if (timeLeft <= 0) {
-          clearInterval(timer);
-          locked = false;
-
-          buttons.forEach((btn) => {
-            btn.disabled = false;
-          });
-
-          hintBtn.textContent = "Đã dùng gợi ý";
-          feedback.innerHTML =
-            "<strong>THỬ LẠI.</strong> Hãy chọn đáp án phù hợp hơn dựa trên gợi ý vừa đọc.";
-        }
-      }, 1000);
+        "<strong>TRY AGAIN.</strong> Hãy chọn đáp án phù hợp hơn dựa trên gợi ý vừa đọc.";
     }
-
-    function getMissionScore(missionId) {
-      if (missionId === "mission2") return mission2Score;
-      if (missionId === "mission3") return mission3Score;
-      if (missionId === "mission4") return mission4Score;
-      return 0;
-    }
-
-    function resetMissionScore(missionId) {
-      const current = getMissionScore(missionId);
-      score -= current * quizPoint;
-      if (score < 0) score = 0;
-
-      if (missionId === "mission2") mission2Score = 0;
-      if (missionId === "mission3") mission3Score = 0;
-      if (missionId === "mission4") mission4Score = 0;
-
-      document.getElementById("scoreText").textContent = score;
-    }
-
-    function checkQuizMissionUnlock(missionId, nextIndex) {
-      const rule = unlockRules[missionId];
-      const currentScore = getMissionScore(missionId);
-      const feedback = document.getElementById("quizFeedback");
-
-      feedback.classList.add("show");
-      document.getElementById("nextBtn").classList.add("hidden");
-      document.getElementById("hintBtn").classList.add("hidden");
-
-      if (currentScore >= rule.need) {
-        rule.unlocked = true;
-
-        feedback.innerHTML =
-          `<strong>MỞ KHÓA THÀNH CÔNG:</strong> Đúng ${currentScore}/${getMissionTotal(missionId)}. ` +
-          `Từ khóa: <strong style="color:#ff9f1c;">${rule.keyword}</strong>.`;
-
-        setTimeout(() => {
-          if (nextIndex >= questions.length) {
-            showResult();
-          } else {
-            questionIndex = nextIndex;
-            renderQuestion();
-          }
-        }, 1700);
-
-      } else {
-        if (!rule.retryUsed) {
-          rule.retryUsed = true;
-
-          feedback.innerHTML =
-            `<strong>CHƯA MỞ KHÓA:</strong> Đúng ${currentScore}/${getMissionTotal(missionId)}. ` +
-            `Cần đạt ít nhất ${rule.need}/${getMissionTotal(missionId)} để mở khóa từ khóa <strong>${rule.keyword}</strong>.<br><br>` +
-            `Nhóm được làm lại 1 lần sau <span id="retryCountdown" style="color:#ff9f1c;">5</span> giây.`;
-
-          lockRetry(() => {
-            resetMissionScore(missionId);
-            questionIndex = missionStartIndex[missionId];
-            renderQuestion();
-          });
-
-        } else {
-          feedback.innerHTML =
-            `<strong>CHƯA ĐẠT:</strong> Đúng ${currentScore}/${getMissionTotal(missionId)}. ` +
-            `Nhóm chưa mở khóa được từ khóa <strong>${rule.keyword}</strong>. Hãy bấm “Thực hiện lại” để chơi lại từ đầu.`;
-
-          setTimeout(() => {
-            showResult();
-          }, 2200);
-        }
-      }
-    }
-
-    function getMissionTotal(missionId) {
-      if (missionId === "mission2") return 3;
-      if (missionId === "mission3") return 2;
-      if (missionId === "mission4") return 1;
-      return 0;
-    }
-
+  }, 1000);
+}
+    
     function nextQuestion() {
-      const currentMission = questions[questionIndex].mission;
-      const nextIndex = questionIndex + 1;
+      questionIndex++;
 
-      if (nextIndex >= questions.length || questions[nextIndex].mission !== currentMission) {
-        checkQuizMissionUnlock(currentMission, nextIndex);
+      if (questionIndex >= questions.length) {
+        showResult();
       } else {
-        questionIndex = nextIndex;
         renderQuestion();
       }
     }
 
     function showResult() {
       document.getElementById("gameScreen").classList.add("hidden");
+      document.getElementById("hintBtn").classList.remove("hidden");
+document.getElementById("hintBtn").disabled = false;
+document.getElementById("hintBtn").textContent = "Gợi ý (-5 giây)";
       document.getElementById("resultScreen").classList.remove("hidden");
 
       document.getElementById("finalScore").textContent = score;
       document.getElementById("maxScore").textContent = maxScore;
 
-      const allUnlocked =
-        unlockRules.mission1.unlocked &&
-        unlockRules.mission2.unlocked &&
-        unlockRules.mission3.unlocked &&
-        unlockRules.mission4.unlocked;
+      const percent = Math.round((score / maxScore) * 100);
+      let message = "";
 
-      const principlesBox = document.getElementById("principlesBox");
-      const copyBtn = document.getElementById("copyBtn");
-      const unlockMessage = document.getElementById("unlockMessage");
+      if (percent >= 85) {
+  message = "Xuất sắc. Nhóm đã sẵn sàng bước vào hoạt động thiết kế EcoWrap.";
+} else if (percent >= 60) {
+  message = "Hoàn thành. Nhóm cần chú ý thêm vai trò vật liệu, lỗi hở mép và độ vừa khít khi thiết kế.";
+} else {
+  message = "Cần ôn lại vai trò vật liệu và nguyên tắc thiết kế trước khi phác thảo EcoWrap.";
+}
 
-      if (allUnlocked) {
-        document.getElementById("resultMessage").textContent =
-          "Xuất sắc. Nhóm đã mở khóa đủ 4 mảnh ghép thiết kế EcoWrap.";
-
-        unlockMessage.innerHTML =
-          `<strong>MÃ THIẾT KẾ ĐÃ MỞ KHÓA:</strong><br>
-          <span style="color:#ff9f1c; font-size: 1.15em;">
-            CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
-          </span>
-          <br><br>
-          Đại diện nhóm chạy lên bảng ghi mã thiết kế và giải thích nhanh một từ khóa
-          trước khi chuyển sang hoạt động thiết kế EcoWrap.`;
-
-        principlesBox.classList.remove("hidden");
-        copyBtn.classList.remove("hidden");
-
-      } else {
-        document.getElementById("resultMessage").textContent =
-          "Chưa mở khóa đủ 4 mảnh ghép thiết kế EcoWrap.";
-
-        unlockMessage.innerHTML =
-          `<strong>MÃ THIẾT KẾ CHƯA HOÀN THÀNH:</strong><br>
-          <span style="color:#ff3b5f; font-size: 1.15em;">
-            Nhóm cần mở khóa đủ: CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN
-          </span>
-          <br><br>
-          Hãy bấm “Thực hiện lại” để chơi lại từ đầu và hoàn thành đầy đủ các nhiệm vụ.`;
-
-        principlesBox.classList.add("hidden");
-        copyBtn.classList.add("hidden");
-      }
-
+      document.getElementById("resultMessage").textContent = message;
       document.getElementById("bar").style.width = "100%";
     }
 
     function restartGame() {
       document.getElementById("resultScreen").classList.add("hidden");
-      document.getElementById("gameScreen").classList.add("hidden");
-      document.getElementById("guideScreen").classList.add("hidden");
       document.getElementById("startScreen").classList.remove("hidden");
-      hidePasswordBox();
-      resetGameState();
+      document.getElementById("guide").classList.remove("show");
+      document.getElementById("copyFeedback").classList.remove("show");
     }
 
     function copyPrinciples() {
       const text =
-        "Mã thiết kế EcoWrap: CÁCH NHIỆT – VỪA KHÍT – NHIỀU LỚP – AN TOÀN. Khi thiết kế, nhóm cần chọn vật liệu cách nhiệt, làm sản phẩm ôm sát ly/bình, phối hợp nhiều lớp vật liệu và bảo đảm an toàn, vệ sinh.";
+        "Nguyên tắc thiết kế EcoWrap: vừa khít với ly/bình; cấu tạo nhiều lớp; hạn chế hở mép; dễ tháo lắp; ưu tiên vật liệu tái chế; đảm bảo an toàn và vệ sinh.";
 
       if (navigator.clipboard) {
         navigator.clipboard.writeText(text);
@@ -1382,7 +1148,7 @@
 
       document.getElementById("copyFeedback").classList.add("show");
     }
-
   </script>
 </body>
 </html>
+```
